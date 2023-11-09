@@ -38,8 +38,6 @@ public class ConnectionServlet extends HttpServlet {
 			Connection connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
 		
 			String request_result = request.getParameter("request");
-		
-			System.out.println("request_result :" +request_result);
 			
 			// 회원가입 일 경우
 			if (request_result.equals("request-register")) {
@@ -123,8 +121,20 @@ public class ConnectionServlet extends HttpServlet {
 	            
 	            ps.executeUpdate();
 	            
-				response.sendRedirect("login.jsp");
+	            System.out.println("INTERMEDIARY_USER_ID : "+ INTERMEDIARY_USER_ID);
+	            request.setAttribute("USER_ID", INTERMEDIARY_USER_ID);
+	            request.getRequestDispatcher("/intermediarySearchAndEdit.jsp").forward(request, response);
 				
+			} else if (request_result.equals("requsest-inermediary_search")) { 
+			
+			
+			} else if (request_result.equals("requsest-inermediary_edit")) {
+				String CEO_NAME = request.getParameter("CEO_NAME");
+				String COMPANY_NAME = request.getParameter("COMPANY_NAME");
+				String COMPANY_ADDRESS = request.getParameter("COMPANY_ADDRESS");
+				String CONTACT_START_TIME = request.getParameter("CONTACT_START_TIME");
+				String CONTACT_END_TIME = request.getParameter("CONTACT_END_TIME");
+				int INTERMEDIARY_USER_ID = (int) session.getAttribute("USER_ID");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

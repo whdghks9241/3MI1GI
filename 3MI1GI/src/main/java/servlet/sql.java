@@ -39,7 +39,7 @@ public class sql {
     // 전문가 정보 조회
     public String intermediarySearch() {
     	
-        sql = "SELECT * FROM intermediary";
+        sql = "SELECT * FROM intermediary WHERE INTERMEDIARY_USER_ID =?";
         return sql;
         
     }
@@ -47,10 +47,11 @@ public class sql {
     // 전문가 정보 수정
     public String intermediaryEdit() {
     	
-        sql = "UPDATE intermediary SET CEO_NAME = ?, COMPANY_NAME = ?, COMPANY_ADDRESS = ?, CONTACT_START_TIME = ?, CONTACT_END_TIME = ?, INTERMEDIARY_USER_ID = ?";
+        sql = "UPDATE intermediary SET CEO_NAME = ?, COMPANY_NAME = ?, COMPANY_ADDRESS = ?, CONTACT_START_TIME = ?, CONTACT_END_TIME = ? WHERE AND INTERMEDIARY_USER_ID = ?";
         return sql;
         
     }
+    
     // 전문가 정보 삭제
     // 부동산 매물 등록
     // 부동산 매물 수정
