@@ -16,8 +16,9 @@ public class sql {
     public String idDuplicateCheck() {
     	
     	sql = "SELECT ID FROM USERINFO WHERE ID = ?"; 
-    	return sql;
     	
+    	return sql;
+ 
     }
     
     // 로그인
@@ -47,9 +48,9 @@ public class sql {
     // 전문가 정보 수정
     public String intermediaryEdit() {
     	
-        sql = "UPDATE intermediary SET CEO_NAME = ?, COMPANY_NAME = ?, COMPANY_ADDRESS = ?, CONTACT_START_TIME = ?, CONTACT_END_TIME = ? WHERE AND INTERMEDIARY_USER_ID = ?";
-        return sql;
-        
+        sql = "UPDATE intermediary SET CEO_NAME = ?, COMPANY_NAME = ?, COMPANY_ADDRESS = ?, CONTACT_START_TIME = ?, CONTACT_END_TIME = ? WHERE INTERMEDIARY_USER_ID = ? AND BUSINESS_NUMBER = ?";
+       
+        return sql; 
     }
     
     // 전문가 정보 삭제

@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -121,20 +123,37 @@ public class ConnectionServlet extends HttpServlet {
 	            
 	            ps.executeUpdate();
 	            
-	            System.out.println("INTERMEDIARY_USER_ID : "+ INTERMEDIARY_USER_ID);
 	            request.setAttribute("USER_ID", INTERMEDIARY_USER_ID);
-	            request.getRequestDispatcher("/intermediarySearchAndEdit.jsp").forward(request, response);
+
+	            ServletContext context = this.getServletContext();
+	            RequestDispatcher dispatcher = context.getRequestDispatcher("/intermediarySearchAndEdit.jsp"); //넘길 페이지 주소
+	            dispatcher.forward(request, response);
+	   
+			} else if (request_result.equals("request-inermediary_edit")) {
 				
-			} else if (request_result.equals("requsest-inermediary_search")) { 
-			
-			
-			} else if (request_result.equals("requsest-inermediary_edit")) {
+				String BUSINESS_NUMBER = request.getParameter("BUSINESS_NUMBER");
 				String CEO_NAME = request.getParameter("CEO_NAME");
 				String COMPANY_NAME = request.getParameter("COMPANY_NAME");
 				String COMPANY_ADDRESS = request.getParameter("COMPANY_ADDRESS");
 				String CONTACT_START_TIME = request.getParameter("CONTACT_START_TIME");
 				String CONTACT_END_TIME = request.getParameter("CONTACT_END_TIME");
 				int INTERMEDIARY_USER_ID = (int) session.getAttribute("USER_ID");
+
+				sqlQuery = sql.intermediaryEdit();
+				
+				ps = connection.prepareStatement(sqlQuery);
+
+				ps.setString(1, CEO_NAME);
+				ps.setString(2, COMPANY_NAME);
+				ps.setString(3, COMPANY_ADDRESS);
+				ps.setString(4, CONTACT_START_TIME);
+				ps.setString(5, CONTACT_END_TIME);
+				ps.setInt(6, INTERMEDIARY_USER_ID);
+				ps.setString(7, BUSINESS_NUMBER);
+				
+				ps.executeUpdate();
+				
+				response.sendRedirect("realestateAdd.jsp");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

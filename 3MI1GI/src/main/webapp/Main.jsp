@@ -8,6 +8,7 @@
 </head>
 <body>
 <h1> 메인화면 </h1>
-	<button type="submit" onclick="location.href='intermediaryAdd.jsp'">마이페이지</button>
+	<button type="submit" onclick="location.href='intermediaryAdd.jsp'">중개인등록</button>
+	
 </body>
 </html>
