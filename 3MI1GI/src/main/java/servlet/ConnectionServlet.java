@@ -21,8 +21,8 @@ public class ConnectionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
-		String jdbcUsername = "SM";
-		String jdbcPassword = "SM1234";
+		String jdbcUsername = "sm";
+		String jdbcPassword = "sm1234";
 		String sqlQuery = null;
 		
 		sql sql = new sql();
@@ -41,20 +41,20 @@ public class ConnectionServlet extends HttpServlet {
 		
 			String request_result = request.getParameter("request");
 			
-			// È¸¿ø°¡ÀÔ ÀÏ °æ¿ì
+			// È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½
 			if (request_result.equals("request-register")) {
-				// »ç¿ëÀÚÀÇ ID(È¸¿ø°¡ÀÔ½Ã ÀÛ¼ºÇÑID)
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ID(È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ ï¿½Û¼ï¿½ï¿½ï¿½ID)
 				String ID = request.getParameter("ID");
-				// »ç¿ëÀÚÀÇ ºñ¹Ð¹øÈ£
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ð¹ï¿½È£
 				String PASSWORD = request.getParameter("PASSWORD");
-				// »ç¿ëÀÚÀÇ ÀüÈ­¹øÈ£
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ï¿½ï¿½È£
 				String PHONE_NUMBER = request.getParameter("PHONE_NUMBER");
-				// »ç¿ëÀÚÀÇ ÀÌ¸ÞÀÏ
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½
 				String EMAIL = request.getParameter("EMAIL");
-				// »ç¿ëÀÚÀÇ ÁÖ¼Ò
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½
 				String ADDRESS = request.getParameter("ADDRESS");
 				
-				// sql ÀÚ¹ÙÆÄÀÏ¿¡¼­ È¸¿ø°¡ÀÔ¿¡ ÇØ´çÇÏ´Â Äõ¸®¹®À» ºÒ·¯¿Â´Ù
+				// sql ï¿½Ú¹ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½Â´ï¿½
 				sqlQuery = sql.register();
 	            ps = connection.prepareStatement(sqlQuery);
 
@@ -70,12 +70,12 @@ public class ConnectionServlet extends HttpServlet {
 	       
 			} else if (request_result.equals("request-login")) {
 				
-				// ·Î±×ÀÎ½Ã »ç¿ëµÇ´Â ID
+				// ï¿½Î±ï¿½ï¿½Î½ï¿½ ï¿½ï¿½ï¿½Ç´ï¿½ ID
 				String ID = request.getParameter("ID");
-				// ·Î±×ÀÎ½Ã »ç¿ëµÇ´Â PASSWORD
+				// ï¿½Î±ï¿½ï¿½Î½ï¿½ ï¿½ï¿½ï¿½Ç´ï¿½ PASSWORD
 				String PASSWORD = request.getParameter("PASSWORD");
 				
-				// ·Î±×ÀÎ¿¡ ÇØ´çÇÏ´Â Äõ¸®¹® ºÒ·¯¿À±â
+				// ï¿½Î±ï¿½ï¿½Î¿ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 				
 				sqlQuery = sql.login();
 				ps = connection.prepareStatement(sqlQuery);
@@ -84,7 +84,7 @@ public class ConnectionServlet extends HttpServlet {
 				
 				ResultSet result = ps.executeQuery();
 				
-				// ·Î±×ÀÎ½Ã 1°³¸¸ Á¶È¸ ÇÏ±â¶§¹®¿¡ if¹® »ç¿ë
+				// ï¿½Î±ï¿½ï¿½Î½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ ï¿½Ï±â¶§ï¿½ï¿½ï¿½ï¿½ ifï¿½ï¿½ ï¿½ï¿½ï¿½
 				if (result.next()) {
 					
 					session.setAttribute("USER_ID", result.getInt("USER_ID"));
@@ -126,7 +126,7 @@ public class ConnectionServlet extends HttpServlet {
 	            request.setAttribute("USER_ID", INTERMEDIARY_USER_ID);
 
 	            ServletContext context = this.getServletContext();
-	            RequestDispatcher dispatcher = context.getRequestDispatcher("/intermediarySearchAndEdit.jsp"); //³Ñ±æ ÆäÀÌÁö ÁÖ¼Ò
+	            RequestDispatcher dispatcher = context.getRequestDispatcher("/intermediarySearchAndEdit.jsp"); //ï¿½Ñ±ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¼ï¿½
 	            dispatcher.forward(request, response);
 	   
 			} else if (request_result.equals("request-inermediary_edit")) {
