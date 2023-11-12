@@ -3,7 +3,7 @@ package servlet;
 public class sql {
     private String sql;
     
-    // »∏ø¯∞°¿‘
+    // ÌöåÏõêÍ∞ÄÏûÖ
     public String register() {
     	
         sql = "INSERT INTO USERINFO (ID, PASSWORD, PHONE_NUMBER, EMAIL, ADDRESS) VALUES (?, ?, ?, ?, ?)";
@@ -11,8 +11,8 @@ public class sql {
         
     }
     
-    // »∏ø¯∞°¿‘Ω√ øπø‹√≥∏Æ
-    // 1. æ∆¿Ãµ ¡ﬂ∫π√º≈©
+    // Î°úÍ∑∏Ïù∏Ïãú ÏòàÏô∏Ï≤òÎ¶¨
+    // 1. id Ï§ëÎ≥µÏ≤¥ÌÅ¨
     public String idDuplicateCheck() {
     	
     	sql = "SELECT ID FROM USERINFO WHERE ID = ?"; 
@@ -21,7 +21,7 @@ public class sql {
  
     }
     
-    // ∑Œ±◊¿Œ
+    // Î°úÍ∑∏Ïù∏
     public String login() {
     	
     	sql = "SELECT * FROM USERINFO WHERE ID =? AND PASSWORD = ?";
@@ -29,7 +29,7 @@ public class sql {
     	
     }
     
-    // ¿¸πÆ∞° ¡§∫∏ µÓ∑œ
+    // Ï§ëÍ∞úÏù∏ Îì±Î°ù
     public String intermediaryAdd() {
     	
         sql = "INSERT INTO intermediary(BUSINESS_NUMBER, CEO_NAME, COMPANY_NAME, COMPANY_ADDRESS, CONTACT_START_TIME, CONTACT_END_TIME, INTERMEDIARY_USER_ID) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -37,7 +37,7 @@ public class sql {
         
     }
     
-    // ¿¸πÆ∞° ¡§∫∏ ¡∂»∏
+    // Ï§ëÍ∞úÏù∏ Ï†ïÎ≥¥ Ï°∞Ìöå
     public String intermediarySearch() {
     	
         sql = "SELECT * FROM intermediary WHERE INTERMEDIARY_USER_ID =?";
@@ -45,7 +45,7 @@ public class sql {
         
     }
     
-    // ¿¸πÆ∞° ¡§∫∏ ºˆ¡§
+    // Ï§ëÍ∞úÏù∏ Ï†ïÎ≥¥ ÏàòÏ†ï
     public String intermediaryEdit() {
     	
         sql = "UPDATE intermediary SET CEO_NAME = ?, COMPANY_NAME = ?, COMPANY_ADDRESS = ?, CONTACT_START_TIME = ?, CONTACT_END_TIME = ? WHERE INTERMEDIARY_USER_ID = ? AND BUSINESS_NUMBER = ?";
@@ -53,8 +53,22 @@ public class sql {
         return sql; 
     }
     
-    // ¿¸πÆ∞° ¡§∫∏ ªË¡¶
-    // ∫ŒµøªÍ ∏≈π∞ µÓ∑œ
-    // ∫ŒµøªÍ ∏≈π∞ ºˆ¡§
-    // ∫ŒµøªÍ ∏≈π∞ ªË¡¶
+    // Îß§Î¨º Îì±Î°ù
+    public String realestateAdd() {
+    	
+    	sql = "INSERT INTO REALESTATEINFO(REALESTATE_ID, INTERMEDIARY_ID, REALESTATE_NAME, REALESTATE_ADDRESS, REALESTATE_TYPE, REALESTATE_CONDITION, REALESTATE_AREA, FLOORS, ROOMS_COUNT, TOILET_COUNT, REALESTATE_SALEPRICE, "
+    			+ "REALESTATE_MONTHLY, REALESTATE_MAINTENANCE_COST, AVAILABLE_MOVE_IN_DATE, PARKING_COUNT, REALESTATE_OPTIION, OTHER_COMMENT, REALESTATE_DATE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    	
+    	return sql;
+    	
+    }
+    // Îß§Î¨º Ï°∞Ìöå
+    public String realestateSearch() {
+    	
+    	sql = "SELECT * FROM REALESTATEINFO WHERE REALESTATE_ID = ? ANDINTERMEDIARY_ID = ?";
+    	
+    	return sql;
+    }
+    // ÔøΩŒµÔøΩÔøΩÔøΩ ÔøΩ≈πÔøΩ ÔøΩÔøΩÔøΩÔøΩ
+    // ÔøΩŒµÔøΩÔøΩÔøΩ ÔøΩ≈πÔøΩ ÔøΩÔøΩÔøΩÔøΩ
 }

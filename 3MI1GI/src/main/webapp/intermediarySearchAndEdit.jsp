@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+pageEncoding="UTF-8"%>
 <%@ page import="servlet.Intermediary"%>
-<%@ page import="servlet.IntermediaryDAO"%>
+<%@ page import="servlet.DAO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,9 +15,7 @@
 	// 중개인의 정보를 들고온후 데이터를 집어 넣는다
 	int USER_ID = (int)request.getAttribute("USER_ID");
 	
-	System.out.print("USER_ID : " +USER_ID);
-	
-	IntermediaryDAO interDAO = new IntermediaryDAO();
+	DAO interDAO = new DAO();
 	Intermediary inter = interDAO.getIntermediaryInfo(USER_ID);
 
 %>
