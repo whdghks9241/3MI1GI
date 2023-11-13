@@ -13,8 +13,11 @@ import javax.servlet.http.HttpSession;
 public class DAO {
 	
 	private static final String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
-	private static final String jdbcUsername = "sm";
-	private static final String jdbcPassword = "sm1234";
+//	private static final String jdbcUsername = "sm";
+//	private static final String jdbcPassword = "sm1234";
+	private static final String jdbcUsername = "SM";
+	private static final String jdbcPassword = "SM1234";
+
 	
 	PreparedStatement ps;
 	ResultSet result;
@@ -35,7 +38,8 @@ public class DAO {
 	}
 
 	public Intermediary getIntermediaryInfo(int USER_ID) {
-		
+
+
 		try {
 			connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
 			
