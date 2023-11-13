@@ -9,7 +9,7 @@
 <body>
 	<h1>매물 등록</h1>
 	
-	<form action="ConnectionServlet" method="post">
+	<form action="ConnectionServlet" method="post" enctype="multipart/form-data">
 
  		<label for=REALESTATE_NAME> 건물이름 : </label>
         <input type="text" id="REALESTATE_NAME" name="REALESTATE_NAME" required>
@@ -52,6 +52,9 @@
      
        	<label for="REALESTATE_OPTIION">옵션 : </label>
         <input type="text" id="REALESTATE_OPTIION" name="REALESTATE_OPTIION" required><br>
+        
+        <label for="image">사진 : </label>
+        <input type="file" id="image" name="image" required><br>
         
 		<input TYPE="hidden" id="request" name="request" value="request-realestate_add">
         <input type="submit" value="가입">

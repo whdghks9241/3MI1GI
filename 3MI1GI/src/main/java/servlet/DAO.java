@@ -1,5 +1,6 @@
 package servlet;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -81,7 +82,7 @@ public class DAO {
 			sqlQuery = sql.realestateSearch();
 			ps = connection.prepareStatement(sqlQuery);
 
-			ps.setInt(2, INTERMEDIARY_ID);
+			ps.setInt(1, INTERMEDIARY_ID);
 			
 			result = ps.executeQuery();
 			
@@ -101,10 +102,15 @@ public class DAO {
 				Date AVAILABLE_MOVE_IN_DATE = result.getDate("AVAILABLE_MOVE_IN_DATE");
 				int PARKING_COUNT = result.getInt("PARKING_COUNT");
 				String REALESTATE_OPTIION = result.getString("REALESTATE_OPTIION");
-				String REALESTATE_PHOTOS = result.getString("REALESTATE_PHOTOS");
 				String OTHER_COMMENT = result.getString("OTHER_COMMENT");
 				Date REALESTATE_DATE = result.getDate("REALESTATE_DATE");
 				
+				Blob REALESTATE_PHOTOS_blob =  result.getBlob("REALESTATE_PHOTOS");
+				byte[] imageData = REALESTATE_PHOTOS_blob.getBytes(1, (int) REALESTATE_PHOTOS_blob.length());
+
+                String imageBase64 = java.util.Base64.getEncoder().encodeToString(imageData);
+                String REALESTATE_PHOTOS = "data:image/jpeg;base64, " + imageBase64;
+                 
 				realestate = new Realestate(1,INTERMEDIARY_ID, REALESTATE_NAME, REALESTATE_ADDRESS, REALESTATE_TYPE, REALESTATE_CONDITION, REALESTATE_AREA, FLOORS, ROOMS_COUNT, TOILET_COUNT,
 						REALESTATE_SALEPRICE, REALESTATE_MONTHLY, REALESTATE_MAINTENANCE_COST, AVAILABLE_MOVE_IN_DATE, PARKING_COUNT, REALESTATE_OPTIION, REALESTATE_PHOTOS, OTHER_COMMENT, REALESTATE_DATE);
 			}

@@ -14,12 +14,28 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 @WebServlet("/ConnectionServlet")
+@MultipartConfig
+/*
+//파일을 올리기 전에 파일 값을 설정하는 공간
+@MultipartConfig (
+			// 파일 데이터를 디스크에 기록을 시작하기 전에 메모리에 보유되는 최대크기(1MB);
+			fileSizeThreshold = 1024 * 1024,
+			// 업로드할 파일의 최대크기(5MB)
+			maxFileSize = 1024 * 1024 * 5,
+			// 요청 데이터의 최대 크기
+			maxRequestSize = 1024 * 1024 * 10,
+			// 파일이 디스크에 저장될 임시 디렉터리
+			location="/tmp"
+		)
+*/
 public class ConnectionServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,9 +50,6 @@ public class ConnectionServlet extends HttpServlet {
 		String jdbcUsername = "SM";
 		String jdbcPassword = "SM1234";
 		
-		System.out.println("jdbcUsername : " + jdbcUsername);
-		System.out.println("jdbcPassword : " + jdbcPassword);
-		
 		String sqlQuery = null;
 		
 		ResultSet result;
@@ -50,8 +63,6 @@ public class ConnectionServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-
 		
 		try {
 	
@@ -92,8 +103,6 @@ public class ConnectionServlet extends HttpServlet {
 				String ID = request.getParameter("ID");
 				// 占싸깍옙占싸쏙옙 占쏙옙占실댐옙 PASSWORD
 				String PASSWORD = request.getParameter("PASSWORD");
-				
-				// 占싸깍옙占싸울옙 占쌔댐옙占싹댐옙 占쏙옙占쏙옙占쏙옙 占쌀뤄옙占쏙옙占쏙옙
 				
 				sqlQuery = sql.login();
 				ps = connection.prepareStatement(sqlQuery);
@@ -221,6 +230,8 @@ public class ConnectionServlet extends HttpServlet {
 				LocalDate localDate = LocalDate.now();
 				// �벑濡앸궇吏�
 				Date REALESTATE_DATE = Date.valueOf(localDate);
+				// 이미지
+				Part imagePart = request.getPart("image");
 			
 				// 以묎컻�씤 踰덊샇
 				int	INTERMEDIARY_ID = (int) session.getAttribute("INTERMEDIARY_ID");
@@ -246,11 +257,12 @@ public class ConnectionServlet extends HttpServlet {
 				ps.setString(15, REALESTATE_OPTIION);
 				ps.setString(16, OTHER_COMMENT);
 				ps.setDate(17, REALESTATE_DATE);
+				ps.setBinaryStream(18, imagePart.getInputStream(), (int) imagePart.getSize());
 				
 				ps.executeUpdate();
 
 	            request.setAttribute("INTERMEDIARY_ID", INTERMEDIARY_ID);
-
+	            
 	            ServletContext context = this.getServletContext();
 	            RequestDispatcher dispatcher = context.getRequestDispatcher("/realestateSearchAndEdit.jsp"); //占싼깍옙 占쏙옙占쏙옙占쏙옙 占쌍쇽옙
 	            dispatcher.forward(request, response);

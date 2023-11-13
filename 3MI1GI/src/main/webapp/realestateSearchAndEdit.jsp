@@ -65,6 +65,11 @@
        	<label for="REALESTATE_OPTIION">옵션 : </label>
         <input type="text" id="REALESTATE_OPTIION" name="REALESTATE_OPTIION" value="<%= Reale.getREALESTATE_OPTIION() %>" required><br>
         
+        <label for="image">사진 : </label>
+        <input type="file" id="image" name="image" src="<%= Reale.getREALESTATE_PHOTOS() %>" required><br>
+        
+        <img src="<%= Reale.getREALESTATE_PHOTOS() %>" alt="Image"><br>
+        
 		<input TYPE="hidden" id="request" name="request" value="request-realestate_edit">
         <input type="submit" value="가입">
     </form>

@@ -3,7 +3,7 @@ package servlet;
 public class sql {
     private String sql;
     
-    // 회원가입
+    // �쉶�썝媛��엯
     public String register() {
     	
         sql = "INSERT INTO USERINFO (ID, PASSWORD, PHONE_NUMBER, EMAIL, ADDRESS) VALUES (?, ?, ?, ?, ?)";
@@ -11,8 +11,8 @@ public class sql {
         
     }
     
-    // 로그인시 예외처리
-    // 1. id 중복체크
+    // 濡쒓렇�씤�떆 �삁�쇅泥섎━
+    // 1. id 以묐났泥댄겕
     public String idDuplicateCheck() {
     	
     	sql = "SELECT ID FROM USERINFO WHERE ID = ?"; 
@@ -21,7 +21,7 @@ public class sql {
  
     }
     
-    // 로그인
+    // 濡쒓렇�씤
     public String login() {
     	
     	sql = "SELECT * FROM USERINFO WHERE ID =? AND PASSWORD = ?";
@@ -29,7 +29,7 @@ public class sql {
     	
     }
     
-    // 중개인 등록
+    // 以묎컻�씤 �벑濡�
     public String intermediaryAdd() {
     	
         sql = "INSERT INTO intermediary(BUSINESS_NUMBER, CEO_NAME, COMPANY_NAME, COMPANY_ADDRESS, CONTACT_START_TIME, CONTACT_END_TIME, INTERMEDIARY_USER_ID) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -37,7 +37,7 @@ public class sql {
         
     }
     
-    // 중개인 정보 조회
+    // 以묎컻�씤 �젙蹂� 議고쉶
     public String intermediarySearch() {
     	
         sql = "SELECT * FROM intermediary WHERE INTERMEDIARY_USER_ID =?";
@@ -45,7 +45,7 @@ public class sql {
         
     }
     
-    // 중개인 정보 수정
+    // 以묎컻�씤 �젙蹂� �닔�젙
     public String intermediaryEdit() {
     	
         sql = "UPDATE intermediary SET CEO_NAME = ?, COMPANY_NAME = ?, COMPANY_ADDRESS = ?, CONTACT_START_TIME = ?, CONTACT_END_TIME = ? WHERE INTERMEDIARY_USER_ID = ? AND BUSINESS_NUMBER = ?";
@@ -53,24 +53,24 @@ public class sql {
         return sql; 
     }
     
-    // 매물 등록
+    // 留ㅻЪ �벑濡�
     public String realestateAdd() {
     	
-    	sql = "INSERT INTO REALESTATEINFO(INTERMEDIARY_ID, REALESTATE_NAME, REALESTATE_ADDRESS, REALESTATE_TYPE, REALESTATE_CONDITION, REALESTATE_AREA, FLOORS, ROOMS_COUNT, TOILET_COUNT, REALESTATE_SALEPRICE, "
-    			+ "REALESTATE_MONTHLY, REALESTATE_MAINTENANCE_COST, AVAILABLE_MOVE_IN_DATE, PARKING_COUNT, REALESTATE_OPTIION, OTHER_COMMENT, REALESTATE_DATE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    	sql = "INSERT INTO REALESTATEINFO(INTERMEDIARY_ID, REALESTATE_NAME, REALESTATE_ADDRESS, REALESTATE_TYPE, REALESTATE_CONDITION, REALESTATE_AREA, FLOORS, ROOMS_COUNT, TOILET_COUNT, REALESTATE_SALEPRICE, REALESTATE_MONTHLY, "
+    			+ "REALESTATE_MAINTENANCE_COST, AVAILABLE_MOVE_IN_DATE, PARKING_COUNT, REALESTATE_OPTIION, OTHER_COMMENT, REALESTATE_DATE, REALESTATE_PHOTOS) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     	
     	return sql;
     	
     }
-    // 매물 조회
+    // 留ㅻЪ 議고쉶
     public String realestateSearch() {
     	
-    	sql = "SELECT * FROM REALESTATEINFO WHERE REALESTATE_ID = ? AND INTERMEDIARY_ID = ?";
+    	sql = "SELECT * FROM REALESTATEINFO WHERE INTERMEDIARY_ID = ?";
     	
     	return sql;
     }
     
-    // 매물 수정
+    // 留ㅻЪ �닔�젙
     public String realestateEdit() {
     	
     	sql = "UPDATE REALESTATEINFO SET REALESTATE_NAME = ? , REALESTATE_ADDRESS = ?, REALESTATE_TYPE = ?, REALESTATE_CONDITION = ?, REALESTATE_AREA = ?, FLOORS = ?, ROOMS_COUNT = ?, TOILET_COUNT = ?, REALESTATE_SALEPRICE = ?, REALESTATE_MONTHLY = ?, "
@@ -78,6 +78,6 @@ public class sql {
     	
       	return sql;
     }
-    // �ε��� �Ź� ����
-    // �ε��� �Ź� ����
+    // 占싸듸옙占쏙옙 占신뱄옙 占쏙옙占쏙옙
+    // 占싸듸옙占쏙옙 占신뱄옙 占쏙옙占쏙옙
 }
