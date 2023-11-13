@@ -13,11 +13,11 @@
 	
 	<%
 	// 중개인의 정보를 들고온후 데이터를 집어 넣는다
-	int REALESTATE_ID = (int)request.getAttribute("REALESTATE_ID");
 	int INTERMEDIARY_ID = (int)request.getAttribute("INTERMEDIARY_ID");
+    System.out.println("INTERMEDIARY_ID : " + INTERMEDIARY_ID);
 
 	DAO RealeDAO = new DAO();
-	Realestate Reale = RealeDAO.getRealestaInfo(REALESTATE_ID, INTERMEDIARY_ID);
+	Realestate Reale = RealeDAO.getRealestaInfo(INTERMEDIARY_ID);
 
 	%>
 	
@@ -65,7 +65,7 @@
        	<label for="REALESTATE_OPTIION">옵션 : </label>
         <input type="text" id="REALESTATE_OPTIION" name="REALESTATE_OPTIION" value="<%= Reale.getREALESTATE_OPTIION() %>" required><br>
         
-		<input TYPE="hidden" id="request" name="request" value="request-realestate_add">
+		<input TYPE="hidden" id="request" name="request" value="request-realestate_edit">
         <input type="submit" value="가입">
     </form>
 </body>

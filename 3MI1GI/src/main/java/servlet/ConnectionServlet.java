@@ -146,7 +146,6 @@ public class ConnectionServlet extends HttpServlet {
 				}
 				
 	            request.setAttribute("USER_ID", INTERMEDIARY_USER_ID);
-	            System.out.println("INTERMEDIARY_USER_ID : " + INTERMEDIARY_USER_ID);
 	            ServletContext context = this.getServletContext();
 	            RequestDispatcher dispatcher = context.getRequestDispatcher("/intermediarySearchAndEdit.jsp"); //�ѱ� ������ �ּ�
 	            dispatcher.forward(request, response);
@@ -215,8 +214,6 @@ public class ConnectionServlet extends HttpServlet {
 				// 등록날짜
 				Date REALESTATE_DATE = Date.valueOf(localDate);
 			
-				// 사용자 번호
-				int REALESTATE_ID = (int) session.getAttribute("USER_ID");
 				// 중개인 번호
 				int	INTERMEDIARY_ID = (int) session.getAttribute("INTERMEDIARY_ID");
 				
@@ -224,33 +221,91 @@ public class ConnectionServlet extends HttpServlet {
 				
 				ps = connection.prepareStatement(sqlQuery);
 				
-				ps.setInt(1, REALESTATE_ID);
-				ps.setInt(2, INTERMEDIARY_ID);
-				ps.setString(3, REALESTATE_NAME);
-				ps.setString(4, REALESTATE_ADDRESS);
-				ps.setString(5, REALESTATE_TYPE);
-				ps.setString(6, REALESTATE_CONDITION);
-				ps.setDouble(7, REALESTATE_AREA);
-				ps.setInt(8, FLOORS);
-				ps.setInt(9, ROOMS_COUNT);
-				ps.setInt(10, TOILET_COUNT);
-				ps.setInt(11, REALESTATE_SALEPRICE);
-				ps.setInt(12, REALESTATE_MONTHLY);
-				ps.setInt(13, REALESTATE_MAINTENANCE_COST);
-				ps.setDate(14, AVAILABLE_MOVE_IN_DATE);
-				ps.setInt(15, PARKING_COUNT);
-				ps.setString(16, REALESTATE_OPTIION);
-				ps.setString(17, OTHER_COMMENT);
-				ps.setDate(18, REALESTATE_DATE);
+				ps.setInt(1, INTERMEDIARY_ID);
+				ps.setString(2, REALESTATE_NAME);
+				ps.setString(3, REALESTATE_ADDRESS);
+				ps.setString(4, REALESTATE_TYPE);
+				ps.setString(5, REALESTATE_CONDITION);
+				ps.setDouble(6, REALESTATE_AREA);
+				ps.setInt(7, FLOORS);
+				ps.setInt(8, ROOMS_COUNT);
+				ps.setInt(9, TOILET_COUNT);
+				ps.setInt(10, REALESTATE_SALEPRICE);
+				ps.setInt(11, REALESTATE_MONTHLY);
+				ps.setInt(12, REALESTATE_MAINTENANCE_COST);
+				ps.setDate(13, AVAILABLE_MOVE_IN_DATE);
+				ps.setInt(14, PARKING_COUNT);
+				ps.setString(15, REALESTATE_OPTIION);
+				ps.setString(16, OTHER_COMMENT);
+				ps.setDate(17, REALESTATE_DATE);
 				
 				ps.executeUpdate();
 
-	            request.setAttribute("REALESTATE_ID", REALESTATE_ID);
 	            request.setAttribute("INTERMEDIARY_ID", INTERMEDIARY_ID);
 
 	            ServletContext context = this.getServletContext();
-	            RequestDispatcher dispatcher = context.getRequestDispatcher("/intermediarySearchAndEdit.jsp"); //�ѱ� ������ �ּ�
+	            RequestDispatcher dispatcher = context.getRequestDispatcher("/realestateSearchAndEdit.jsp"); //�ѱ� ������ �ּ�
 	            dispatcher.forward(request, response);
+			} else if (request_result.equals("request-realestate_edit")) {
+				// 건물이름
+				String REALESTATE_NAME = request.getParameter("REALESTATE_NAME");
+				// 건물주소
+				String REALESTATE_ADDRESS = request.getParameter("REALESTATE_ADDRESS");
+				/// 건물 종류
+				String REALESTATE_TYPE = request.getParameter("REALESTATE_TYPE");
+				// 계약조건
+				String REALESTATE_CONDITION = request.getParameter("REALESTATE_CONDITION");
+				// 면적
+				double REALESTATE_AREA = Integer.parseInt(request.getParameter("REALESTATE_AREA"));
+				// 층수
+				int FLOORS = Integer.parseInt(request.getParameter("FLOORS"));
+				// 방개수
+				int ROOMS_COUNT = Integer.parseInt(request.getParameter("ROOMS_COUNT"));
+				// 화장실 개수
+				int TOILET_COUNT = Integer.parseInt(request.getParameter("TOILET_COUNT"));
+				// 매매가
+				int REALESTATE_SALEPRICE = Integer.parseInt(request.getParameter("REALESTATE_SALEPRICE"));
+				// 월세
+				int REALESTATE_MONTHLY = Integer.parseInt(request.getParameter("REALESTATE_MONTHLY"));	
+				// 관리비
+				int REALESTATE_MAINTENANCE_COST = Integer.parseInt(request.getParameter("REALESTATE_MAINTENANCE_COST"));
+				// 입주가능일
+				Date AVAILABLE_MOVE_IN_DATE = Date.valueOf(request.getParameter("AVAILABLE_MOVE_IN_DATE"));
+				// 주차가능수
+				int PARKING_COUNT = Integer.parseInt(request.getParameter("PARKING_COUNT"));
+				// 옵션
+				String REALESTATE_OPTIION = request.getParameter("REALESTATE_OPTIION");
+				// 기타내용
+				String OTHER_COMMENT = request.getParameter("OTHER_COMMENT");
+				
+				// 중개인 번호
+				int	INTERMEDIARY_ID = (int) session.getAttribute("INTERMEDIARY_ID");
+				
+				sqlQuery = sql.realestateEdit();
+				
+				ps = connection.prepareStatement(sqlQuery);
+				
+				ps.setString(1, REALESTATE_NAME);
+				ps.setString(2, REALESTATE_ADDRESS);
+				ps.setString(3, REALESTATE_TYPE);
+				ps.setString(4, REALESTATE_CONDITION);
+				ps.setDouble(5, REALESTATE_AREA);
+				ps.setInt(6, FLOORS);
+				ps.setInt(7, ROOMS_COUNT);
+				ps.setInt(8, TOILET_COUNT);
+				ps.setInt(9, REALESTATE_SALEPRICE);
+				ps.setInt(10, REALESTATE_MONTHLY);
+				ps.setInt(11, REALESTATE_MAINTENANCE_COST);
+				ps.setDate(12, AVAILABLE_MOVE_IN_DATE);
+				ps.setInt(13, PARKING_COUNT);
+				ps.setString(14, REALESTATE_OPTIION);
+				ps.setString(15, OTHER_COMMENT);
+				ps.setInt(16, 1);
+				ps.setInt(17, INTERMEDIARY_ID);
+				
+				ps.executeUpdate();
+				
+				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

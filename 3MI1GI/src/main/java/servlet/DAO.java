@@ -69,7 +69,7 @@ public class DAO {
 		return intermediary;
 	}
 	
-	public Realestate getRealestaInfo(int REALESTATE_ID, int INTERMEDIARY_ID) {
+	public Realestate getRealestaInfo(int INTERMEDIARY_ID) {
 		
 		try {
 			connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
@@ -77,7 +77,6 @@ public class DAO {
 			sqlQuery = sql.realestateSearch();
 			ps = connection.prepareStatement(sqlQuery);
 
-			ps.setInt(1, REALESTATE_ID);
 			ps.setInt(2, INTERMEDIARY_ID);
 			
 			result = ps.executeQuery();
@@ -102,7 +101,7 @@ public class DAO {
 				String OTHER_COMMENT = result.getString("OTHER_COMMENT");
 				Date REALESTATE_DATE = result.getDate("REALESTATE_DATE");
 				
-				realestate = new Realestate(REALESTATE_ID, INTERMEDIARY_ID, REALESTATE_NAME, REALESTATE_ADDRESS, REALESTATE_TYPE, REALESTATE_CONDITION, REALESTATE_AREA, FLOORS, ROOMS_COUNT, TOILET_COUNT,
+				realestate = new Realestate(1,INTERMEDIARY_ID, REALESTATE_NAME, REALESTATE_ADDRESS, REALESTATE_TYPE, REALESTATE_CONDITION, REALESTATE_AREA, FLOORS, ROOMS_COUNT, TOILET_COUNT,
 						REALESTATE_SALEPRICE, REALESTATE_MONTHLY, REALESTATE_MAINTENANCE_COST, AVAILABLE_MOVE_IN_DATE, PARKING_COUNT, REALESTATE_OPTIION, REALESTATE_PHOTOS, OTHER_COMMENT, REALESTATE_DATE);
 			}
 		} catch (SQLException e) {
