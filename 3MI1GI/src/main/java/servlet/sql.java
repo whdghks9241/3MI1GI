@@ -11,8 +11,6 @@ public class sql {
         
     }
     
-    // 濡쒓렇�씤�떆 �삁�쇅泥섎━
-    // 1. id 以묐났泥댄겕
     public String idDuplicateCheck() {
     	
     	sql = "SELECT ID FROM USERINFO WHERE ID = ?"; 
@@ -78,6 +76,4 @@ public class sql {
     	
       	return sql;
     }
-    // 占싸듸옙占쏙옙 占신뱄옙 占쏙옙占쏙옙
-    // 占싸듸옙占쏙옙 占신뱄옙 占쏙옙占쏙옙
 }

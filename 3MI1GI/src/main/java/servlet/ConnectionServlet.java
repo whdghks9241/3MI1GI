@@ -120,7 +120,7 @@ public class ConnectionServlet extends HttpServlet {
 					session.setAttribute("EMAIL", result.getString("EMAIL"));
 					session.setAttribute("ADDRESS", result.getString("ADDRESS"));
 					
-					response.sendRedirect("Main.jsp");
+					response.sendRedirect("myPage.jsp");
 					
 				} else {
 					request.getRequestDispatcher("login.jsp").forward(request, response);

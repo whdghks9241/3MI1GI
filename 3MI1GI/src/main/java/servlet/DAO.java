@@ -68,9 +68,6 @@ public class DAO {
 			e.printStackTrace();
 		}
 		
-		// select �ؼ� 1�� ���� �ִ� ���� �ۼ��ϰ�
-		// new product �̿��ؼ� �� ��������;
-		
 		return intermediary;
 	}
 	

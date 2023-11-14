@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ page import="servlet.Intermediary"%>
+ <%@ page import="servlet.Intermediary"%>
 <%@ page import="servlet.DAO"%>
 <!DOCTYPE html>
 <html>
@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="css/myPage.css">
 </head>
 <body>
+<h1>중개인등록</h1>
 
 	<%
 	
@@ -38,7 +39,7 @@
            
         </div>
 	</header>
-    <section class="aa">
+	<section class="aa">
         <nav class="container_left">
             <div>
                 <!-- 중간 지점 -->
@@ -74,11 +75,35 @@
 		                    <li>중개인 탈퇴</li>
                 		<%
                 		}
-                	%>
+                	%> 
                 	  
 
                 </div>
             </div>
+        </nav>
+        <nav>
+        	<form action="ConnectionServlet" method="post">
+		 		<label for="BUSINESS_NUMBER">사업자번호</label>
+		        <input type="text" id="BUSINESS_NUMBER" name="BUSINESS_NUMBER" required><br>
+		
+		        <label for="CEO_NAME">대표이름</label>
+		        <input type="text" id="CEO_NAME" name="CEO_NAME" required><br>
+		
+		        <label for="COMPANY_NAME">부동산이름</label>
+		        <input type="text" id="COMPANY_NAME" name="COMPANY_NAME" required><br>
+		        
+		        <label for="COMPANY_ADDRESS">부동산주소</label>
+		        <input type="text" id="COMPANY_ADDRESS" name="COMPANY_ADDRESS" required><br>
+		        
+		        <label for="CONTACT_START_TIME">문의시작시간</label>
+		        <input type="date" id="CONTACT_START_TIME" name="CONTACT_START_TIME" required><br>
+		        
+		        <label for="CONTACT_END_TIME">문의종료시간</label>
+		        <input type="date" id="CONTACT_END_TIME" name="CONTACT_END_TIME" required><br>
+		        
+				<input TYPE="hidden" id="request" name="request" value="request-inermediary_add">
+		        <input type="submit" value="가입">
+    		</form>
         </nav>
     </section>
 </body>
