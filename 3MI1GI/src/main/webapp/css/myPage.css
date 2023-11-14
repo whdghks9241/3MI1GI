@@ -90,6 +90,7 @@ div.logout_frame {
 }
 
 .container_left {
+	border-right: 1px solid;
     float:left;
     margin: 20px;
     width: 12%;
@@ -99,7 +100,6 @@ div.logout_frame {
 
 .container_right {
     display: inline-block;
-    border-left: 1px solid;
     margin: 20px;
     width: 75%;
     height: 100%;
@@ -121,6 +121,7 @@ div.logout_frame {
 }
 
 div.menu_list {
+	margin:5%;
     list-style-type: none;
     padding: 10px;
     float:right;

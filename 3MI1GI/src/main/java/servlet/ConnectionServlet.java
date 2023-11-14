@@ -45,10 +45,10 @@ public class ConnectionServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
-//		String jdbcUsername = "sm";
-//		String jdbcPassword = "sm1234";
-		String jdbcUsername = "SM";
-		String jdbcPassword = "SM1234";
+		String jdbcUsername = "sm";
+		String jdbcPassword = "sm1234";
+//		String jdbcUsername = "SM";
+//		String jdbcPassword = "SM1234";
 		
 		String sqlQuery = null;
 		
@@ -63,14 +63,14 @@ public class ConnectionServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		try {
-	
+			
 			Connection connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
 		
 			String request_result = request.getParameter("request");
 			
-			// 회占쏙옙占쏙옙占쏙옙 占쏙옙 占쏙옙占�
+			
+			// 회원가입
 			if (request_result.equals("request-register")) {
 				// 占쏙옙占쏙옙占쏙옙占� ID(회占쏙옙占쏙옙占쌉쏙옙 占쌜쇽옙占쏙옙ID)
 				String ID = request.getParameter("ID");
@@ -97,6 +97,7 @@ public class ConnectionServlet extends HttpServlet {
 	            
 				response.sendRedirect("login.jsp");
 	       
+			// 로그인
 			} else if (request_result.equals("request-login")) {
 				
 				// 占싸깍옙占싸쏙옙 占쏙옙占실댐옙 ID
@@ -126,7 +127,7 @@ public class ConnectionServlet extends HttpServlet {
 					request.getRequestDispatcher("login.jsp").forward(request, response);
 				}
 				
-			// 以묎컻�씤 �벑濡�
+			// 중개인 등록
 			} else if (request_result.equals("request-inermediary_add")) {
 				
 				String BUSINESS_NUMBER = request.getParameter("BUSINESS_NUMBER");
@@ -167,7 +168,7 @@ public class ConnectionServlet extends HttpServlet {
 	            RequestDispatcher dispatcher = context.getRequestDispatcher("/intermediarySearchAndEdit.jsp"); //占싼깍옙 占쏙옙占쏙옙占쏙옙 占쌍쇽옙
 	            dispatcher.forward(request, response);
 	   
-	        // 以묎컻�씤 �젙蹂� �닔�젙
+	        // 중개인 정보 수정
 			} else if (request_result.equals("request-inermediary_edit")) {
 				
 				String BUSINESS_NUMBER = request.getParameter("BUSINESS_NUMBER");
@@ -194,7 +195,7 @@ public class ConnectionServlet extends HttpServlet {
 				
 				response.sendRedirect("realestateAdd.jsp");
 				
-			// 留ㅻЪ�벑濡�
+			// 매물 등록
 			} else if (request_result.equals("request-realestate_add")) {
 				// 嫄대Ъ�씠由�
 				String REALESTATE_NAME = request.getParameter("REALESTATE_NAME");
@@ -266,6 +267,8 @@ public class ConnectionServlet extends HttpServlet {
 	            ServletContext context = this.getServletContext();
 	            RequestDispatcher dispatcher = context.getRequestDispatcher("/realestateSearchAndEdit.jsp"); //占싼깍옙 占쏙옙占쏙옙占쏙옙 占쌍쇽옙
 	            dispatcher.forward(request, response);
+	          
+	        // 매물 정보 수정
 			} else if (request_result.equals("request-realestate_edit")) {
 				// 嫄대Ъ�씠由�
 				String REALESTATE_NAME = request.getParameter("REALESTATE_NAME");
