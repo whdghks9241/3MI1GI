@@ -45,15 +45,15 @@ public class ConnectionServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
-		String jdbcUsername = "sm";
-		String jdbcPassword = "sm1234";
-//		String jdbcUsername = "SM";
-//		String jdbcPassword = "SM1234";
+//		String jdbcUsername = "sm";
+//		String jdbcPassword = "sm1234";
+		String jdbcUsername = "SM";
+		String jdbcPassword = "SM1234";
 		
 		String sqlQuery = null;
 		
 		ResultSet result;
-		
+
 		sql sql = new sql();
 		PreparedStatement ps;
 		HttpSession session = request.getSession();
@@ -68,22 +68,15 @@ public class ConnectionServlet extends HttpServlet {
 			Connection connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
 		
 			String request_result = request.getParameter("request");
-			
+
 			
 			// 회원가입
 			if (request_result.equals("request-register")) {
-				// 占쏙옙占쏙옙占쏙옙占� ID(회占쏙옙占쏙옙占쌉쏙옙 占쌜쇽옙占쏙옙ID)
 				String ID = request.getParameter("ID");
-				// 占쏙옙占쏙옙占쏙옙占� 占쏙옙橘占싫�
 				String PASSWORD = request.getParameter("PASSWORD");
-				// 占쏙옙占쏙옙占쏙옙占� 占쏙옙화占쏙옙호
 				String PHONE_NUMBER = request.getParameter("PHONE_NUMBER");
-				// 占쏙옙占쏙옙占쏙옙占� 占싱몌옙占쏙옙
 				String EMAIL = request.getParameter("EMAIL");
-				// 占쏙옙占쏙옙占쏙옙占� 占쌍쇽옙
 				String ADDRESS = request.getParameter("ADDRESS");
-				
-				// sql 占쌘뱄옙占쏙옙占싹울옙占쏙옙 회占쏙옙占쏙옙占쌉울옙 占쌔댐옙占싹댐옙 占쏙옙占쏙옙占쏙옙占쏙옙 占쌀뤄옙占승댐옙
 				sqlQuery = sql.register();
 	            ps = connection.prepareStatement(sqlQuery);
 
@@ -100,9 +93,7 @@ public class ConnectionServlet extends HttpServlet {
 			// 로그인
 			} else if (request_result.equals("request-login")) {
 				
-				// 占싸깍옙占싸쏙옙 占쏙옙占실댐옙 ID
 				String ID = request.getParameter("ID");
-				// 占싸깍옙占싸쏙옙 占쏙옙占실댐옙 PASSWORD
 				String PASSWORD = request.getParameter("PASSWORD");
 				
 				sqlQuery = sql.login();
@@ -112,15 +103,21 @@ public class ConnectionServlet extends HttpServlet {
 				
 				result = ps.executeQuery();
 				
-				// 占싸깍옙占싸쏙옙 1占쏙옙占쏙옙 占쏙옙회 占싹기때占쏙옙占쏙옙 if占쏙옙 占쏙옙占�
 				if (result.next()) {
 					session.setAttribute("USER_ID", result.getInt("USER_ID"));
 					session.setAttribute("ID", result.getString("ID"));
 					session.setAttribute("PASSWORD", result.getString("PASSWORD"));
 					session.setAttribute("PHONE_NUMBER", result.getString("PHONE_NUMBER"));
-					session.setAttribute("EMAIL", result.getString("EMAIL"));
 					session.setAttribute("ADDRESS", result.getString("ADDRESS"));
 					
+					DAO interDAO = new DAO();
+					Intermediary inter = interDAO.getIntermediaryInfo(result.getInt("USER_ID"));
+					
+					if (inter != null) {
+						session.setAttribute("INTERMEDIARY_ID", inter.getINTERMEDIARY_ID());
+					}
+				
+
 					response.sendRedirect("myPage.jsp");
 					
 				} else {
@@ -151,7 +148,6 @@ public class ConnectionServlet extends HttpServlet {
 	            
 	            ps.executeUpdate();
 	            
-	            // 以묎컻�씤 �벑濡앹씠 �셿猷뚮릺硫� �빐�떦 �쑀���쓽 以묎컻�씤踰덊샇瑜� �꽭�뀡�뿉 ���옣�븳�떎.
 	            sqlQuery = sql.intermediarySearch();
 				ps = connection.prepareStatement(sqlQuery);
 				
@@ -165,7 +161,7 @@ public class ConnectionServlet extends HttpServlet {
 				
 	            request.setAttribute("USER_ID", INTERMEDIARY_USER_ID);
 	            ServletContext context = this.getServletContext();
-	            RequestDispatcher dispatcher = context.getRequestDispatcher("/intermediarySearchAndEdit.jsp"); //占싼깍옙 占쏙옙占쏙옙占쏙옙 占쌍쇽옙
+	            RequestDispatcher dispatcher = context.getRequestDispatcher("/myPageIntermediarySearchAndEdit.jsp"); //占싼깍옙 占쏙옙占쏙옙占쏙옙 占쌍쇽옙
 	            dispatcher.forward(request, response);
 	   
 	        // 중개인 정보 수정
@@ -191,56 +187,55 @@ public class ConnectionServlet extends HttpServlet {
 				ps.setInt(6, INTERMEDIARY_USER_ID);
 				ps.setString(7, BUSINESS_NUMBER);
 				
-				ps.executeUpdate();
+				int a = ps.executeUpdate();
 				
-				response.sendRedirect("realestateAdd.jsp");
+				response.sendRedirect("myPageIntermediarySearchAndEdit.jsp");
 				
 			// 매물 등록
 			} else if (request_result.equals("request-realestate_add")) {
-				// 嫄대Ъ�씠由�
+			
 				String REALESTATE_NAME = request.getParameter("REALESTATE_NAME");
-				// 嫄대Ъ二쇱냼
+		
 				String REALESTATE_ADDRESS = request.getParameter("REALESTATE_ADDRESS");
-				/// 嫄대Ъ 醫낅쪟
+			
 				String REALESTATE_TYPE = request.getParameter("REALESTATE_TYPE");
-				// 怨꾩빟議곌굔
+		
 				String REALESTATE_CONDITION = request.getParameter("REALESTATE_CONDITION");
-				// 硫댁쟻
+				
 				double REALESTATE_AREA = Integer.parseInt(request.getParameter("REALESTATE_AREA"));
-				// 痢듭닔
+			
 				int FLOORS = Integer.parseInt(request.getParameter("FLOORS"));
-				// 諛⑷컻�닔
+			
 				int ROOMS_COUNT = Integer.parseInt(request.getParameter("ROOMS_COUNT"));
-				// �솕�옣�떎 媛쒖닔
+				
 				int TOILET_COUNT = Integer.parseInt(request.getParameter("TOILET_COUNT"));
-				// 留ㅻℓ媛�
+		
 				int REALESTATE_SALEPRICE = Integer.parseInt(request.getParameter("REALESTATE_SALEPRICE"));
-				// �썡�꽭
+			
 				int REALESTATE_MONTHLY = Integer.parseInt(request.getParameter("REALESTATE_MONTHLY"));	
-				// 愿�由щ퉬
+			
 				int REALESTATE_MAINTENANCE_COST = Integer.parseInt(request.getParameter("REALESTATE_MAINTENANCE_COST"));
-				// �엯二쇨��뒫�씪
+		
 				Date AVAILABLE_MOVE_IN_DATE = Date.valueOf(request.getParameter("AVAILABLE_MOVE_IN_DATE"));
-				// 二쇱감媛��뒫�닔
+			
 				int PARKING_COUNT = Integer.parseInt(request.getParameter("PARKING_COUNT"));
-				// �샃�뀡
+			
 				String REALESTATE_OPTIION = request.getParameter("REALESTATE_OPTIION");
-				// 湲고��궡�슜
+		
 				String OTHER_COMMENT = request.getParameter("OTHER_COMMENT");
 				
 				LocalDate localDate = LocalDate.now();
-				// �벑濡앸궇吏�
+		
 				Date REALESTATE_DATE = Date.valueOf(localDate);
 				// 이미지
 				Part imagePart = request.getPart("image");
-			
-				// 以묎컻�씤 踰덊샇
+
 				int	INTERMEDIARY_ID = (int) session.getAttribute("INTERMEDIARY_ID");
 				
 				sqlQuery = sql.realestateAdd();
 				
 				ps = connection.prepareStatement(sqlQuery);
-				
+
 				ps.setInt(1, INTERMEDIARY_ID);
 				ps.setString(2, REALESTATE_NAME);
 				ps.setString(3, REALESTATE_ADDRESS);
@@ -262,46 +257,46 @@ public class ConnectionServlet extends HttpServlet {
 				
 				ps.executeUpdate();
 
-	            request.setAttribute("INTERMEDIARY_ID", INTERMEDIARY_ID);
-	            
-	            ServletContext context = this.getServletContext();
-	            RequestDispatcher dispatcher = context.getRequestDispatcher("/realestateSearchAndEdit.jsp"); //占싼깍옙 占쏙옙占쏙옙占쏙옙 占쌍쇽옙
-	            dispatcher.forward(request, response);
-	          
+				// 매물등록이 마무리되면 내가 등록된 매물 페이지로 이동
+//	            request.setAttribute("INTERMEDIARY_ID", INTERMEDIARY_ID);
+//	            
+//	            ServletContext context = this.getServletContext();
+//	            RequestDispatcher dispatcher = context.getRequestDispatcher("/realestateSearchAndEdit.jsp"); //占싼깍옙 占쏙옙占쏙옙占쏙옙 占쌍쇽옙
+//	            dispatcher.forward(request, response);
+//	          
 	        // 매물 정보 수정
 			} else if (request_result.equals("request-realestate_edit")) {
-				// 嫄대Ъ�씠由�
+		
 				String REALESTATE_NAME = request.getParameter("REALESTATE_NAME");
-				// 嫄대Ъ二쇱냼
+	
 				String REALESTATE_ADDRESS = request.getParameter("REALESTATE_ADDRESS");
-				/// 嫄대Ъ 醫낅쪟
+				
 				String REALESTATE_TYPE = request.getParameter("REALESTATE_TYPE");
-				// 怨꾩빟議곌굔
+			
 				String REALESTATE_CONDITION = request.getParameter("REALESTATE_CONDITION");
-				// 硫댁쟻
+			
 				double REALESTATE_AREA = Integer.parseInt(request.getParameter("REALESTATE_AREA"));
-				// 痢듭닔
+			
 				int FLOORS = Integer.parseInt(request.getParameter("FLOORS"));
-				// 諛⑷컻�닔
+			
 				int ROOMS_COUNT = Integer.parseInt(request.getParameter("ROOMS_COUNT"));
-				// �솕�옣�떎 媛쒖닔
+			
 				int TOILET_COUNT = Integer.parseInt(request.getParameter("TOILET_COUNT"));
-				// 留ㅻℓ媛�
+			
 				int REALESTATE_SALEPRICE = Integer.parseInt(request.getParameter("REALESTATE_SALEPRICE"));
-				// �썡�꽭
+		
 				int REALESTATE_MONTHLY = Integer.parseInt(request.getParameter("REALESTATE_MONTHLY"));	
-				// 愿�由щ퉬
+	
 				int REALESTATE_MAINTENANCE_COST = Integer.parseInt(request.getParameter("REALESTATE_MAINTENANCE_COST"));
-				// �엯二쇨��뒫�씪
+	
 				Date AVAILABLE_MOVE_IN_DATE = Date.valueOf(request.getParameter("AVAILABLE_MOVE_IN_DATE"));
-				// 二쇱감媛��뒫�닔
+	
 				int PARKING_COUNT = Integer.parseInt(request.getParameter("PARKING_COUNT"));
-				// �샃�뀡
+		
 				String REALESTATE_OPTIION = request.getParameter("REALESTATE_OPTIION");
-				// 湲고��궡�슜
+
 				String OTHER_COMMENT = request.getParameter("OTHER_COMMENT");
 				
-				// 以묎컻�씤 踰덊샇
 				int	INTERMEDIARY_ID = (int) session.getAttribute("INTERMEDIARY_ID");
 				
 				sqlQuery = sql.realestateEdit();

@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
 </head>
 <body>
 	<h1>매물 등록</h1>

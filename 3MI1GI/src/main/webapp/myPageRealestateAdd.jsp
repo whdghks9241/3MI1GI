@@ -8,16 +8,16 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="css/myPage.css">
-<link rel="stylesheet" href="css/myPageIntermediaryAdd.css">
+<link rel="stylesheet" href="css/myPageRealstateAdd.css">
 </head>
 <body>
 	<%
-	
+
 	int	USER_ID = (int) session.getAttribute("USER_ID");
+	
 	DAO interDAO = new DAO();
 	
 	Intermediary inter = interDAO.getIntermediaryInfo(USER_ID);
-
 	%>
 	<header>
 		<!-- 로고 및 상단 버튼 -->
@@ -82,38 +82,58 @@
             </div>
         </nav>
         <nav class="container_right">
-         	<h1 class="titleText" >중개인 등록</h1>
-
-       
-        
-    		<form class="InterAddContainer" action="ConnectionServlet" method="post">
-        		<div class="InterAdItem">
-        			<label for="BUSINESS_NUMBER">사업자번호</label><br>
-		        	<input type="text" id="BUSINESS_NUMBER" name="BUSINESS_NUMBER" required><br>
-        		</div>
-        		<div class="InterAdItem">
-        			<label for="CEO_NAME">대표이름</label><br>
-		        	<input type="text" id="CEO_NAME" name="CEO_NAME" required><br>	
-        		</div>
-				<div class="InterAdItem">
-			        <label for="COMPANY_NAME">부동산이름</label><br>
-			        <input type="text" id="COMPANY_NAME" name="COMPANY_NAME" required><br>
-		        </div>
-		        <div class="InterAdItem">
-			        <label for="COMPANY_ADDRESS">부동산주소</label><br>
-			        <input type="text" id="COMPANY_ADDRESS" name="COMPANY_ADDRESS" required><br>
-		        </div>
-		        <div class="InterAdItem">
-			        <label for="CONTACT_START_TIME">문의시작시간</label><br>
-			        <input type="time" id="CONTACT_START_TIME" name="CONTACT_START_TIME" required><br>
-		        </div>
-		         <div class="InterAdItem">
-			        <label for="CONTACT_END_TIME">문의종료시간</label><br>
-			        <input type="time" id="CONTACT_END_TIME" name="CONTACT_END_TIME" required><br>
-		        </div>
-				<input TYPE="hidden" id="request" name="request" value="request-inermediary_add">
-		        <button class=addButton type="submit" >중개인 등록</button>
-    		</form> 
+         	<h1>매물 등록</h1>
+	
+			<form class="RealeStateAddContainer" action="ConnectionServlet" method="post" enctype="multipart/form-data">
+		
+		 		<label for=REALESTATE_NAME> 건물이름 : </label>
+		        <input type="text" id="REALESTATE_NAME" name="REALESTATE_NAME" required>
+		        
+		        <label for=REALESTATE_ADDRESS> 건물주소 : </label>
+		        <input type="text" id="REALESTATE_ADDRESS" name="REALESTATE_ADDRESS" required>
+		
+		        <label for="REALESTATE_TYPE">건물종류 : </label>
+		        <input type="text" id="REALESTATE_TYPE" name="REALESTATE_TYPE" required><br>
+		
+		        <label for="REALESTATE_CONDITION">계약조건 : </label>
+		        <input type="text" id="REALESTATE_CONDITION" name="REALESTATE_CONDITION" required><br>
+		
+		        <label for="REALESTATE_AREA">면적 : </label>
+		        <input type="text" id="REALESTATE_AREA" name="REALESTATE_AREA" required><br>
+		        
+		        <label for="FLOORS">층수 : </label>
+		        <input type="text" id="FLOORS" name="FLOORS" required><br>
+		        
+		        <label for="ROOMS_COUNT">방개수 : </label>
+		        <input type="text" id="ROOMS_COUNT" name="ROOMS_COUNT" required><br>
+		        
+		        <label for="TOILET_COUNT">화장실개수 : </label>
+		        <input type="text" id="TOILET_COUNT" name="TOILET_COUNT" required><br>
+		        
+		        <label for="REALESTATE_SALEPRICE">매매가 : </label>
+		        <input type="text" id="REALESTATE_SALEPRICE" name="REALESTATE_SALEPRICE" required><br>
+		        
+		        <label for="REALESTATE_MONTHLY">월세 : </label>
+		        <input type="text" id="REALESTATE_MONTHLY" name="REALESTATE_MONTHLY" required><br>
+		        
+		        <label for="REALESTATE_MAINTENANCE_COST">관리비 : </label>
+		        <input type="text" id="REALESTATE_MAINTENANCE_COST" name="REALESTATE_MAINTENANCE_COST" required><br>
+		        
+		        <label for="AVAILABLE_MOVE_IN_DATE">입주가능일 : </label>
+		        <input type="date" id="AVAILABLE_MOVE_IN_DATE" name="AVAILABLE_MOVE_IN_DATE" required><br>
+		      
+		      	<label for="PARKING_COUNT">주차가능수 : </label>
+		        <input type="text" id="PARKING_COUNT" name="PARKING_COUNT" required><br>
+		     
+		       	<label for="REALESTATE_OPTIION">옵션 : </label>
+		        <input type="text" id="REALESTATE_OPTIION" name="REALESTATE_OPTIION" required><br>
+		        
+		        <label for="image">사진 : </label>
+		        <input type="file" id="image" name="image" required><br>
+		        
+				<input TYPE="hidden" id="request" name="request" value="request-realestate_add">
+		        <input type="submit" value="매물등록">
+		    </form>
         </nav>
     </section>
 </body>

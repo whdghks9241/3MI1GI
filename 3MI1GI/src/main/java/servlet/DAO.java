@@ -14,10 +14,10 @@ import javax.servlet.http.HttpSession;
 public class DAO {
 	
 	private static final String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
-	private static final String jdbcUsername = "sm";
-	private static final String jdbcPassword = "sm1234";
-//	private static final String jdbcUsername = "SM";
-//	private static final String jdbcPassword = "SM1234";
+//	private static final String jdbcUsername = "sm";
+//	private static final String jdbcPassword = "sm1234";
+	private static final String jdbcUsername = "SM";
+	private static final String jdbcPassword = "SM1234";
 
 	
 	PreparedStatement ps;
@@ -101,6 +101,7 @@ public class DAO {
 				String REALESTATE_OPTIION = result.getString("REALESTATE_OPTIION");
 				String OTHER_COMMENT = result.getString("OTHER_COMMENT");
 				Date REALESTATE_DATE = result.getDate("REALESTATE_DATE");
+				
 				
 				Blob REALESTATE_PHOTOS_blob =  result.getBlob("REALESTATE_PHOTOS");
 				byte[] imageData = REALESTATE_PHOTOS_blob.getBytes(1, (int) REALESTATE_PHOTOS_blob.length());

@@ -10,7 +10,7 @@
     height: 100%;
 }
 
-.InterAddContainer {
+.InterEditContainer {
 	text-align: center;
 	
 }
@@ -40,7 +40,7 @@ input {
 	height: 50px;
 }
 
-.addButton {
+.editButton {
     background-image: url(../IMG/Venice.jpg);
     text-align: center;
 	margin: 2%;
