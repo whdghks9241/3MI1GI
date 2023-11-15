@@ -84,8 +84,6 @@
         <nav class="container_right">
          	<h1 class="titleText" >중개인 등록</h1>
 
-       
-        
     		<form class="InterAddContainer" action="ConnectionServlet" method="post">
         		<div class="InterAdItem">
         			<label for="BUSINESS_NUMBER">사업자번호</label><br>

@@ -45,10 +45,10 @@ public class ConnectionServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
-//		String jdbcUsername = "sm";
-//		String jdbcPassword = "sm1234";
-		String jdbcUsername = "SM";
-		String jdbcPassword = "SM1234";
+		String jdbcUsername = "sm";
+		String jdbcPassword = "sm1234";
+//		String jdbcUsername = "SM";
+//		String jdbcPassword = "SM1234";
 		
 		String sqlQuery = null;
 		
