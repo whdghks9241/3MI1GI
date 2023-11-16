@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/main/java/servlet/ConnectionServlet.java=UTF-8
+encoding//src/main/java/servlet/Realestate.java=UTF-8
 encoding//src/main/java/servlet/sql.java=UTF-8
-encoding//src/main/webapp/intermediarySearchAndEdit.jsp=UTF-8
+encoding//src/main/webapp/HouseType.jsp=UTF-8

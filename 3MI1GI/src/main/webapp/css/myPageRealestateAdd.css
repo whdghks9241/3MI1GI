@@ -21,7 +21,7 @@
 .contents_left {
     float:left;
     margin: 20px;
-    width: 45%;
+    width: 40%;
     height: 100%;
 }
 
@@ -29,7 +29,7 @@
 .contents_right {
     display: inline-block;
     margin: 20px;
-    width: 45%;
+    width: 50%;
     height: 100%;
 }
 
@@ -52,12 +52,18 @@ label {
 	padding: 25px;
 	margin-bottom : 20px;
 }
-
+.checkbox {
+	width:20px; 
+	height:20px;
+	margin-left:15px;
+	margin-bottom:15px;
+	margin-top:15px;
+}
 input {
 	padding-left: 10px;
 	padding-right: 10px;
 	font-size:15px;
-	width: 300px;
+	width: 320px;
 	height: 40px;
 }
 
@@ -80,3 +86,4 @@ input {
 	border: none;
 	cursor:pointer;
 }
+

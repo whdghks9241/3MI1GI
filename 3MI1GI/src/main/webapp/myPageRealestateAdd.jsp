@@ -71,7 +71,7 @@
 			                </div>
 	    					<li onclick="location.href='myPageIntermediarySearchAndEdit.jsp'">중개인 정보</li>
 	    					<li onclick="location.href='myPageRealestateAdd.jsp'">매물 등록</li>
-		                    <li onclick="location.href='myPageIntermediaryAdd.jsp'">등록 매물 조회</li>
+		                    <li onclick="location.href='RealestateAllSearch.jsp'">등록 매물 조회</li>
 		                    <li onclick="location.href='myPageIntermediaryAdd.jsp'">중개인 탈퇴</li>
                 		<%
                 		}
@@ -83,7 +83,7 @@
         </nav>
         <nav class="container_right">
          	<h1 class="titleText" >매물 등록</h1>
-         	<form class="RealeStateAddContainer" action="ConnectionServlet" method="post" enctype="multipart/form-data">	
+         	<form class="RealeStateAddContainer" action="ConnectionServlet"  method="post" enctype="multipart/form-data">	
          		<div class="contents_left">
          		
 					<div class="InterAdItem">
@@ -95,22 +95,21 @@
 				        <input type="text" id="REALESTATE_ADDRESS" name="REALESTATE_ADDRESS"  placeholder="서울특별시 강남구 반포동 00-00 이리왕빌라 201호" required><br>
 			    	</div> 
 					<div class="InterAdItem">
-						<label for=REALESTATE_NAME> 건물종류 </label>
-				        <input type="text" id="REALESTATE_NAME" name="REALESTATE_NAME" placeholder="아파트 / 빌라 / 도시생활주택 / 다가구주택 / 원룸 / 투룸" required><br>
+						<label for=REALESTATE_TYPE> 건물종류 </label>
+				        <input type="text" id="REALESTATE_TYPE" name="REALESTATE_TYPE" placeholder="아파트 / 빌라 / 도시생활주택 / 원룸 / 투룸" required><br>
 					</div>
 					<div class="InterAdItem">
-						<label for=REALESTATE_NAME> 계약조건 </label>
-				        <input type="text" id="REALESTATE_NAME" name="REALESTATE_NAME" placeholder="매매 / 전세 / 월세" required><br>
+						<label for=REALESTATE_CONDITION> 계약조건 </label>
+				        <input type="text" id="REALESTATE_CONDITION" name=REALESTATE_CONDITION placeholder="매매 / 전세 / 월세" required><br>
 					</div>
 					<div class="InterAdItem">
-						<label for=REALESTATE_NAME> 면적 </label>
-				        <input style="width:265px" type="text" id="REALESTATE_NAME" name="REALESTATE_NAME" placeholder="84.24㎡ (소수점 2째 자리 까지 입력해주세)" required><a style="font-size:30px; padding-left:10px">㎡</a>
+						<label for=REALESTATE_AREA> 면적 </label>
+				        <input style="width:285px" type="text" id="REALESTATE_AREA" name="REALESTATE_AREA" placeholder="84.24㎡ (소수점 2째 자리 까지 입력해주세요)" required><a style="font-size:30px; padding-left:10px">㎡</a>
 					</div>
 					<div class="InterAdItem"> 
 				        <label for="FLOORS">층수 </label>
 				        <input type="text" id="FLOORS" name="FLOORS" placeholder="10층" required><br>
 		        	</div> 
-		        	
 		        	<div class="InterAdItem"> 
 				        <label for="ROOMS_COUNT">방개수 </label>
 				        <input type="text" id="ROOMS_COUNT" name="ROOMS_COUNT" placeholder="3" required><br>
@@ -118,15 +117,17 @@
 			    	<div class="InterAdItem"> 
 				        <label for="TOILET_COUNT">화장실개수 </label>
 				        <input type="text" id="TOILET_COUNT" name="TOILET_COUNT" placeholder="2" required><br>
-			        </div> 
-
-			
+			        </div>
+			        <div class="InterAdItem"> 
+				        <label for="PARKING_COUNT">주차가능대수 </label>
+				        <input type="text" id="PARKING_COUNT" name="PARKING_COUNT" placeholder="1" required><br>
+			        </div>  
          		</div>
 				<div class="contents_right">
 					<div class="InterAdItem2"> 
-				        <img src="IMG/user.png" style="width:190px; height:190px" ><br>
+				        <img id="titleImage" style="background-color:#eeeeee; width:170px; height:170px" ><br>
 				        <label style="text-align:center" for="image">대표사진</label><br>
-				        <input type="file" id="image" name="image" required><br>
+				        <input type="file" id="image" name="image" onchange="readURL(this);" required><br>
 			        </div> 
 					
 					<div class="InterAdItem2"> 
@@ -145,30 +146,80 @@
 				        <label for="AVAILABLE_MOVE_IN_DATE">입주가능일 : </label>
 				        <input type="date" id="AVAILABLE_MOVE_IN_DATE" name="AVAILABLE_MOVE_IN_DATE" required><br>
 		      		</div> 
-
+		        	<div class="InterAdItem2"> 
+				        <label for="OTHER_COMMENT">기타내용 : </label>
+				        <input type="text" id="OTHER_COMMENT" name="OTHER_COMMENT" required><br>
+		      		</div> 
 				</div>
 				
 				<div style="background-color:#eeeeee; width:1100px; height:220px;margin:30px; margin-left:200px; text-align: center;" >
-		      			<h1 style="padding:20px; font-size:25px; font-weight: bold;">옵션</h1>
-		      			<table>
-							<tr>
-								<td>에베베베</td>
-								<td>에베베베</td>
-								<td>에베베베</td>
-								<td>에베베베</td>
-								<td>에베베베</td>
-								<td>에베베베</td>
-								<td>에베베베</td>
-							</tr>
-		      			</table>
+	      			<h1 style="padding:20px; font-size:25px; font-weight: bold;  text-align: center;">옵션</h1>
+	      			<table style="margin-left:100px" >
+						<tr>
+							<td><input id="OPTION_1" type="checkbox" class="checkbox">냉장고</td>
+								<td><input TYPE="hidden" id="OPTION_1_val" name="OPTION_1_val"></td>
+							<td><input name="OPTION_2" type="checkbox" class="checkbox">세탁기</td>
+								<td><input TYPE="hidden" id="OPTION_2_val" name="OPTION_2_val"></td>
+							<td><input name="OPTION_3" type="checkbox" class="checkbox">에어컨</td>
+								<td><input TYPE="hidden" id="OPTION_3_val" name="OPTION_3_val"></td>
+							<td><input name="OPTION_4" type="checkbox" class="checkbox">샤워부스</td>
+								<td><input TYPE="hidden" id="OPTION_4_val" name="OPTION_4_val"></td>
+							<td><input name="OPTION_5" type="checkbox" class="checkbox">전자레인지</td>
+								<td><input TYPE="hidden" id="OPTION_5_val" name="OPTION_5_val"></td>
+							<td><input name="OPTION_6" type="checkbox" class="checkbox">인덕션</td>
+								<td><input TYPE="hidden" id="OPTION_6_val" name="OPTION_6_val"></td>
+							<td><input name="OPTION_7" type="checkbox" class="checkbox">싱크대</td>
+								<td><input TYPE="hidden" id="OPTION_7_val" name="OPTION_7_val"></td>
+							<td><input name="OPTION_8" type="checkbox" class="checkbox">침대</td>
+								<td><input TYPE="hidden" id="OPTION_8_val" name="OPTION_8_val"></td>
+						</tr>
+						<tr>
+							<td><input name="OPTION_9" type="checkbox" class="checkbox">책상</td>
+								<td><input TYPE="hidden" id="OPTION_9_val" name="OPTION_9_val"></td>
+							<td><input name="OPTION_10" type="checkbox" class="checkbox">신발장</td>
+								<td><input TYPE="hidden" id="OPTION_10_val" name="OPTION_10_val"></td>
+							<td><input name="OPTION_11" type="checkbox" class="checkbox">옷장</td>
+								<td><input TYPE="hidden" id="OPTION_11_val" name="OPTION_11_val"></td>
+							<td><input name="OPTION_12" type="checkbox" class="checkbox">화재경보기</td>
+								<td><input TYPE="hidden" id="OPTION_12_val" name="OPTION_12_val"></td>
+							<td><input name="OPTION_13" type="checkbox" class="checkbox">가스오븐</td>
+								<td><input TYPE="hidden" id="OPTION_13_val" name="OPTION_13OPTION_13_val"></td>
+							<td><input name="OPTION_14" type="checkbox" class="checkbox">비데</td>
+								<td><input TYPE="hidden" id="OPTION_14_val" name="OPTION_14_val"></td>
+							<td><input name="OPTION_15" type="checkbox" class="checkbox">베란다</td>
+								<td><input TYPE="hidden" id="OPTION_15_val" name="OPTION_15_val"></td>
+							<td><input name="OPTION_16" type="checkbox" class="checkbox">무인택배함</td>
+								<td><input TYPE="hidden" id="OPTION_16_val" name="OPTION_16_val"></td>
+						</tr>
+	      			</table>
 		      	</div> 
-				
-				
-				
+		      	<input TYPE="hidden" id="request" name="request" value="request-realestate_add">
+		
+				<button class="addButton" type="submit" id="optionCheck" name="optionCheck" >매물 등록</button>
+			
 			</form>
-			<button class="addButton">asdf</button>
+		
         </nav>
         
     </section>
+    
+    <script>
+    
+    	// 이미지 선택시 미리보기
+	    function readURL(input) {
+	    	if (input.files && input.files[0]) {
+	    	    var reader = new FileReader();
+	    	    reader.onload = function(e) {
+	    	      document.getElementById('titleImage').src = e.target.result;
+	    		};
+	    	    reader.readAsDataURL(input.files[0]);
+	    	} else {
+	    	    document.getElementById('titleImage').src = "";
+	    	}
+	    }
+
+	    
+    
+   	</script>
 </body>
 </html>

@@ -60,7 +60,7 @@ public class sql {
     	return sql;
     	
     }
-    // 留ㅻЪ 議고쉶
+    // 전체조회
     public String realestateSearch() {
     	
     	sql = "SELECT * FROM REALESTATEINFO WHERE INTERMEDIARY_ID = ?";
@@ -68,7 +68,16 @@ public class sql {
     	return sql;
     }
     
-    // 留ㅻЪ �닔�젙
+    // 매물 유형별
+    public String realestateTypeSearch() {
+    	
+    	sql = "SELECT * FROM REALESTATEINFO WHERE INTERMEDIARY_ID = ? AND REALESTATE_TYPE = ?";
+    	
+    	return sql;
+    }
+    
+    
+    // 매물수정
     public String realestateEdit() {
     	
     	sql = "UPDATE REALESTATEINFO SET REALESTATE_NAME = ? , REALESTATE_ADDRESS = ?, REALESTATE_TYPE = ?, REALESTATE_CONDITION = ?, REALESTATE_AREA = ?, FLOORS = ?, ROOMS_COUNT = ?, TOILET_COUNT = ?, REALESTATE_SALEPRICE = ?, REALESTATE_MONTHLY = ?, "

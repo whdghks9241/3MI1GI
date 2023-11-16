@@ -45,10 +45,10 @@ public class ConnectionServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
-		String jdbcUsername = "sm";
-		String jdbcPassword = "sm1234";
-//		String jdbcUsername = "SM";
-//		String jdbcPassword = "SM1234";
+//		String jdbcUsername = "sm";
+//		String jdbcPassword = "sm1234";
+		String jdbcUsername = "SM";
+		String jdbcPassword = "SM1234";
 		
 		String sqlQuery = null;
 		
@@ -193,39 +193,43 @@ public class ConnectionServlet extends HttpServlet {
 				
 			// 매물 등록
 			} else if (request_result.equals("request-realestate_add")) {
-			
+				// 건물이름
 				String REALESTATE_NAME = request.getParameter("REALESTATE_NAME");
-		
+				// 건물주소
 				String REALESTATE_ADDRESS = request.getParameter("REALESTATE_ADDRESS");
-			
+				// 건물유형
 				String REALESTATE_TYPE = request.getParameter("REALESTATE_TYPE");
-		
+				// 계약조건
 				String REALESTATE_CONDITION = request.getParameter("REALESTATE_CONDITION");
-				
+				// 주소
 				double REALESTATE_AREA = Integer.parseInt(request.getParameter("REALESTATE_AREA"));
-			
+				// 층수
 				int FLOORS = Integer.parseInt(request.getParameter("FLOORS"));
-			
+				// 방 개수
 				int ROOMS_COUNT = Integer.parseInt(request.getParameter("ROOMS_COUNT"));
-				
+				// 화장실개수
 				int TOILET_COUNT = Integer.parseInt(request.getParameter("TOILET_COUNT"));
-		
+				//매매가
 				int REALESTATE_SALEPRICE = Integer.parseInt(request.getParameter("REALESTATE_SALEPRICE"));
-			
+				// 월세
 				int REALESTATE_MONTHLY = Integer.parseInt(request.getParameter("REALESTATE_MONTHLY"));	
-			
+				// 관리비
 				int REALESTATE_MAINTENANCE_COST = Integer.parseInt(request.getParameter("REALESTATE_MAINTENANCE_COST"));
-		
+				// 입주가능일
 				Date AVAILABLE_MOVE_IN_DATE = Date.valueOf(request.getParameter("AVAILABLE_MOVE_IN_DATE"));
-			
+				// 주차가능수
 				int PARKING_COUNT = Integer.parseInt(request.getParameter("PARKING_COUNT"));
-			
-				String REALESTATE_OPTIION = request.getParameter("REALESTATE_OPTIION");
+				
 		
+				
+				// 옵션
+				String REALESTATE_OPTIION = null;
+				
+				// 기타내용
 				String OTHER_COMMENT = request.getParameter("OTHER_COMMENT");
 				
 				LocalDate localDate = LocalDate.now();
-		
+
 				Date REALESTATE_DATE = Date.valueOf(localDate);
 				// 이미지
 				Part imagePart = request.getPart("image");
@@ -257,6 +261,7 @@ public class ConnectionServlet extends HttpServlet {
 				
 				ps.executeUpdate();
 
+				response.sendRedirect("RealestateAllSearch.jsp");
 				// 매물등록이 마무리되면 내가 등록된 매물 페이지로 이동
 //	            request.setAttribute("INTERMEDIARY_ID", INTERMEDIARY_ID);
 //	            

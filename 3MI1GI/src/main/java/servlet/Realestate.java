@@ -4,43 +4,43 @@ import java.util.Date;
 
 public class Realestate {
 	
-	// 매물번호
+	// 留ㅻЪ踰덊샇
 	private int REALESTATE_ID; 
-	// 중개인번호
+	// 以묎컻�씤踰덊샇
 	private int INTERMEDIARY_ID;
-	// 매물이름
+	// 留ㅻЪ�씠由�
 	private String REALESTATE_NAME;
-	// 매물주소
+	// 留ㅻЪ二쇱냼
 	private String REALESTATE_ADDRESS;
-	// 매물 유형
+	// 留ㅻЪ �쑀�삎
 	private String REALESTATE_TYPE;
-	// 계약조건
+	// 怨꾩빟議곌굔
 	private String REALESTATE_CONDITION;
-	// 면적
+	// 硫댁쟻
 	private double REALESTATE_AREA;
-	// 층수
+	// 痢듭닔
 	private int FLOORS;
-	// 방개수
+	// 諛⑷컻�닔
 	private int ROOMS_COUNT;
-	// 화장실개수
+	// �솕�옣�떎媛쒖닔
 	private int TOILET_COUNT;
-	// 매매가
+	// 留ㅻℓ媛�
 	private int REALESTATE_SALEPRICE;
-	// 월세
+	// �썡�꽭
 	private int REALESTATE_MONTHLY;
-	// 관리비
+	// 愿�由щ퉬
 	private int REALESTATE_MAINTENANCE_COST;
-	// 입주가능일
+	// �엯二쇨��뒫�씪
 	private Date AVAILABLE_MOVE_IN_DATE;
-	// 주차가능수
+	// 二쇱감媛��뒫�닔
 	private int PARKING_COUNT;
-	// 옵션
+	// �샃�뀡
 	private String REALESTATE_OPTIION;
-	// 매물사진
+	// 留ㅻЪ�궗吏�
 	private String REALESTATE_PHOTOS;
-	// 기타내용
+	// 湲고��궡�슜
 	private String OTHER_COMMENT;
-	// 등록날짜
+	// �벑濡앸궇吏�
 	private Date REALESTATE_DATE;
 	
 	public Realestate(int REALESTATE_ID, int INTERMEDIARY_ID, String REALESTATE_NAME, String REALESTATE_ADDRESS, String REALESTATE_TYPE, String REALESTATE_CONDITION, double REALESTATE_AREA, int FLOORS, int ROOMS_COUNT, int TOILET_COUNT, 
@@ -65,6 +65,23 @@ public class Realestate {
 		this.OTHER_COMMENT = OTHER_COMMENT;
 		this.REALESTATE_DATE = REALESTATE_DATE;
 	}
+	
+	public Realestate(int REALESTATE_ID, String REALESTATE_CONDITION, int REALESTATE_SALEPRICE, int REALESTATE_MONTHLY, int REALESTATE_MAINTENANCE_COST, String REALESTATE_TYPE,
+			double REALESTATE_AREA, int FLOORS, int ROOMS_COUNT, int TOILET_COUNT, int PARKING_COUNT, String REALESTATE_PHOTOS) {
+		this.REALESTATE_ID = REALESTATE_ID;
+		this.REALESTATE_TYPE = REALESTATE_TYPE;
+		this.REALESTATE_CONDITION = REALESTATE_CONDITION;
+		this.REALESTATE_AREA = REALESTATE_AREA;
+		this.FLOORS = FLOORS;
+		this.ROOMS_COUNT = ROOMS_COUNT;
+		this.TOILET_COUNT =TOILET_COUNT;
+		this.REALESTATE_SALEPRICE = REALESTATE_SALEPRICE;
+		this.REALESTATE_MONTHLY = REALESTATE_MONTHLY;
+		this.REALESTATE_MAINTENANCE_COST = REALESTATE_MAINTENANCE_COST;
+		this.PARKING_COUNT = PARKING_COUNT;
+		this.REALESTATE_PHOTOS = REALESTATE_PHOTOS;
+	}
+	
 	
 	
 	public int getREALESTATE_ID() {
