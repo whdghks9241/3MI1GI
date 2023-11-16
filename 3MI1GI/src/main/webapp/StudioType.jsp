@@ -110,7 +110,7 @@
                 %>
                 
                 <form method="post" action="realestateDetail.jsp">
-	                <div class="realestate_area" style="border: 1px solid black; width:95%; height:170px; margin:20px; cursor:pointer;" onclick="location.href='realestateDetail.jsp'">
+	                <div class="realestate_area" style="border: 1px solid black; width:95%; height:170px; margin:20px; cursor:pointer;" onclick="location.href='realestateDetail.jsp?REALESTATE_ID=<%=r.getREALESTATE_ID()%>'">
 	                    <div style="float: left">
 					        <img src="<%= r.getREALESTATE_PHOTOS() %>" alt="Image" style="width:140px; height:140px; margin:15px; background-color:#eeeeee" />
 					    </div>
