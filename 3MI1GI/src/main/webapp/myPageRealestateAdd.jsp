@@ -72,7 +72,7 @@
 	    					<li onclick="location.href='myPageIntermediarySearchAndEdit.jsp'">중개인 정보</li>
 	    					<li onclick="location.href='myPageRealestateAdd.jsp'">매물 등록</li>
 		                    <li onclick="location.href='RealestateAllSearch.jsp'">등록 매물 조회</li>
-		                    <li onclick="location.href='myPageIntermediaryAdd.jsp'">중개인 탈퇴</li>
+		                    <li onclick="location.href='intermediarySecession.jsp'">중개인 탈퇴</li>
                 		<%
                 		}
                 	%> 
@@ -217,9 +217,6 @@
 	    	    document.getElementById('titleImage').src = "";
 	    	}
 	    }
-
-	    
-    
    	</script>
 </body>
 </html>

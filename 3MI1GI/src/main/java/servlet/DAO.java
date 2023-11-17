@@ -73,26 +73,26 @@ public class DAO {
 		return intermediary;
 	}
 	
-	public Realestate getRealestaInfo(int INTERMEDIARY_ID) {
+	public Realestate getRealestaInfo(int REALESTATE_ID, int INTERMEDIARY_ID) {
 		
 		try {
 			connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
 			
-			sqlQuery = sql.realestateSearch();
+			sqlQuery = sql.realestateTargetSearch();
 			ps = connection.prepareStatement(sqlQuery);
 
 			ps.setInt(1, INTERMEDIARY_ID);
+			ps.setInt(2, REALESTATE_ID);
 			
 			result = ps.executeQuery();
 			
 			if (result.next()) {
-			
 				String REALESTATE_NAME = result.getString("REALESTATE_NAME");
 				String REALESTATE_ADDRESS = result.getString("REALESTATE_ADDRESS");
 				String REALESTATE_TYPE = result.getString("REALESTATE_TYPE");
 				String REALESTATE_CONDITION = result.getString("REALESTATE_CONDITION");
 				double REALESTATE_AREA = result.getDouble("REALESTATE_AREA");
-				int FLOORS = result.getInt("FLOORS");
+				String FLOORS = result.getString("FLOORS");
 				int ROOMS_COUNT = result.getInt("ROOMS_COUNT");
 				int TOILET_COUNT = result.getInt("TOILET_COUNT");
 				int REALESTATE_SALEPRICE = result.getInt("REALESTATE_SALEPRICE");
@@ -152,7 +152,7 @@ public class DAO {
 				// 면적
 				double REALESTATE_AREA = result.getDouble("REALESTATE_AREA");
 				//층수
-				int FLOORS = result.getInt("FLOORS");
+				String FLOORS = result.getString("FLOORS");
 				// 방 개수
 				int ROOMS_COUNT = result.getInt("ROOMS_COUNT");
 				// 화장실
@@ -160,7 +160,6 @@ public class DAO {
 				// 주차가능
 				int PARKING_COUNT = result.getInt("PARKING_COUNT");
 
-				
 				// 사진
 				Blob REALESTATE_PHOTOS_blob =  result.getBlob("REALESTATE_PHOTOS");
 				byte[] imageData = REALESTATE_PHOTOS_blob.getBytes(1, (int) REALESTATE_PHOTOS_blob.length());
@@ -209,7 +208,7 @@ public class DAO {
 				// 면적
 				double REALESTATE_AREA = result.getDouble("REALESTATE_AREA");
 				//층수
-				int FLOORS = result.getInt("FLOORS");
+				String FLOORS = result.getString("FLOORS");
 				// 방 개수
 				int ROOMS_COUNT = result.getInt("ROOMS_COUNT");
 				// 화장실

@@ -187,7 +187,7 @@ public class ConnectionServlet extends HttpServlet {
 				ps.setInt(6, INTERMEDIARY_USER_ID);
 				ps.setString(7, BUSINESS_NUMBER);
 				
-				int a = ps.executeUpdate();
+				ps.executeUpdate();
 				
 				response.sendRedirect("myPageIntermediarySearchAndEdit.jsp");
 				
@@ -201,10 +201,10 @@ public class ConnectionServlet extends HttpServlet {
 				String REALESTATE_TYPE = request.getParameter("REALESTATE_TYPE");
 				// 계약조건
 				String REALESTATE_CONDITION = request.getParameter("REALESTATE_CONDITION");
-				// 주소
-				double REALESTATE_AREA = Integer.parseInt(request.getParameter("REALESTATE_AREA"));
+				// 면적
+				double REALESTATE_AREA = Double.parseDouble(request.getParameter("REALESTATE_AREA"));
 				// 층수
-				int FLOORS = Integer.parseInt(request.getParameter("FLOORS"));
+				String FLOORS =request.getParameter("FLOORS");
 				// 방 개수
 				int ROOMS_COUNT = Integer.parseInt(request.getParameter("ROOMS_COUNT"));
 				// 화장실개수
@@ -246,7 +246,7 @@ public class ConnectionServlet extends HttpServlet {
 				ps.setString(4, REALESTATE_TYPE);
 				ps.setString(5, REALESTATE_CONDITION);
 				ps.setDouble(6, REALESTATE_AREA);
-				ps.setInt(7, FLOORS);
+				ps.setString(7, FLOORS);
 				ps.setInt(8, ROOMS_COUNT);
 				ps.setInt(9, TOILET_COUNT);
 				ps.setInt(10, REALESTATE_SALEPRICE);
@@ -261,14 +261,13 @@ public class ConnectionServlet extends HttpServlet {
 				
 				ps.executeUpdate();
 
-				response.sendRedirect("RealestateAllSearch.jsp");
-				// 매물등록이 마무리되면 내가 등록된 매물 페이지로 이동
-//	            request.setAttribute("INTERMEDIARY_ID", INTERMEDIARY_ID);
-//	            
-//	            ServletContext context = this.getServletContext();
-//	            RequestDispatcher dispatcher = context.getRequestDispatcher("/realestateSearchAndEdit.jsp"); //占싼깍옙 占쏙옙占쏙옙占쏙옙 占쌍쇽옙
-//	            dispatcher.forward(request, response);
-//	          
+				//매물등록이 마무리되면 내가 등록된 매물 페이지로 이동
+	            request.setAttribute("INTERMEDIARY_ID", INTERMEDIARY_ID);
+	            
+	            ServletContext context = this.getServletContext();
+	            RequestDispatcher dispatcher = context.getRequestDispatcher("/RealestateAllSearch.jsp"); //占싼깍옙 占쏙옙占쏙옙占쏙옙 占쌍쇽옙
+	            dispatcher.forward(request, response);
+	          
 	        // 매물 정보 수정
 			} else if (request_result.equals("request-realestate_edit")) {
 		
@@ -280,9 +279,9 @@ public class ConnectionServlet extends HttpServlet {
 			
 				String REALESTATE_CONDITION = request.getParameter("REALESTATE_CONDITION");
 			
-				double REALESTATE_AREA = Integer.parseInt(request.getParameter("REALESTATE_AREA"));
+				double REALESTATE_AREA = Double.parseDouble(request.getParameter("REALESTATE_AREA")) ;
 			
-				int FLOORS = Integer.parseInt(request.getParameter("FLOORS"));
+				String FLOORS = request.getParameter("FLOORS");
 			
 				int ROOMS_COUNT = Integer.parseInt(request.getParameter("ROOMS_COUNT"));
 			
@@ -304,6 +303,12 @@ public class ConnectionServlet extends HttpServlet {
 				
 				int	INTERMEDIARY_ID = (int) session.getAttribute("INTERMEDIARY_ID");
 				
+				int REALESTATE_ID = Integer.parseInt(request.getParameter("REALESTATE_ID"));
+				
+				// 이미지
+				Part imagePart = request.getPart("image");
+				
+				
 				sqlQuery = sql.realestateEdit();
 				
 				ps = connection.prepareStatement(sqlQuery);
@@ -313,7 +318,7 @@ public class ConnectionServlet extends HttpServlet {
 				ps.setString(3, REALESTATE_TYPE);
 				ps.setString(4, REALESTATE_CONDITION);
 				ps.setDouble(5, REALESTATE_AREA);
-				ps.setInt(6, FLOORS);
+				ps.setString(6, FLOORS);
 				ps.setInt(7, ROOMS_COUNT);
 				ps.setInt(8, TOILET_COUNT);
 				ps.setInt(9, REALESTATE_SALEPRICE);
@@ -323,12 +328,41 @@ public class ConnectionServlet extends HttpServlet {
 				ps.setInt(13, PARKING_COUNT);
 				ps.setString(14, REALESTATE_OPTIION);
 				ps.setString(15, OTHER_COMMENT);
-				ps.setInt(16, 1);
-				ps.setInt(17, INTERMEDIARY_ID);
+				ps.setBinaryStream(16, imagePart.getInputStream(), (int) imagePart.getSize());
+				ps.setInt(17, REALESTATE_ID);
+				ps.setInt(18, INTERMEDIARY_ID);
 				
 				ps.executeUpdate();
 				
+	            request.setAttribute("REALESTATE_ID", REALESTATE_ID);
+	            
+	            ServletContext context = this.getServletContext();
+	            RequestDispatcher dispatcher = context.getRequestDispatcher("/realestateDetail.jsp"); //占싼깍옙 占쏙옙占쏙옙占쏙옙 占쌍쇽옙
+	            dispatcher.forward(request, response);
+			} else if (request_result.equals("request-realestate_delete")) {
 				
+			} else if (request_result.equals("request-inermediary_delete")) {
+
+				System.out.println("result" );
+				String ID = request.getParameter("ID");
+				
+				String PW = request.getParameter("PW");
+				int USER_ID = (int) session.getAttribute("USER_ID");
+				sqlQuery = sql.inermediaryDelete();
+				System.out.println("result1" );
+				
+				ps = connection.prepareStatement(sqlQuery);
+				System.out.println("result2" );
+				
+				ps.setInt(1, USER_ID);
+				ps.setString(2, ID);
+				ps.setString(3, PW);
+				System.out.println("result3" );
+				
+				ps.executeUpdate();
+				System.out.println("result4" );
+				session.removeAttribute("INTERMEDIARY_ID");
+				System.out.println("result5" + ps.executeUpdate());
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -19,7 +19,7 @@ public class Realestate {
 	// 硫댁쟻
 	private double REALESTATE_AREA;
 	// 痢듭닔
-	private int FLOORS;
+	private String FLOORS;
 	// 諛⑷컻�닔
 	private int ROOMS_COUNT;
 	// �솕�옣�떎媛쒖닔
@@ -43,7 +43,7 @@ public class Realestate {
 	// �벑濡앸궇吏�
 	private Date REALESTATE_DATE;
 	
-	public Realestate(int REALESTATE_ID, int INTERMEDIARY_ID, String REALESTATE_NAME, String REALESTATE_ADDRESS, String REALESTATE_TYPE, String REALESTATE_CONDITION, double REALESTATE_AREA, int FLOORS, int ROOMS_COUNT, int TOILET_COUNT, 
+	public Realestate(int REALESTATE_ID, int INTERMEDIARY_ID, String REALESTATE_NAME, String REALESTATE_ADDRESS, String REALESTATE_TYPE, String REALESTATE_CONDITION, double REALESTATE_AREA, String FLOORS, int ROOMS_COUNT, int TOILET_COUNT, 
 			int REALESTATE_SALEPRICE, int REALESTATE_MONTHLY, int REALESTATE_MAINTENANCE_COST, Date AVAILABLE_MOVE_IN_DATE, int PARKING_COUNT, String REALESTATE_OPTIION, String REALESTATE_PHOTOS, String OTHER_COMMENT, Date REALESTATE_DATE) {
 		this.REALESTATE_ID = REALESTATE_ID;
 		this.INTERMEDIARY_ID = INTERMEDIARY_ID;
@@ -67,7 +67,7 @@ public class Realestate {
 	}
 	
 	public Realestate(int REALESTATE_ID, String REALESTATE_CONDITION, int REALESTATE_SALEPRICE, int REALESTATE_MONTHLY, int REALESTATE_MAINTENANCE_COST, String REALESTATE_TYPE,
-			double REALESTATE_AREA, int FLOORS, int ROOMS_COUNT, int TOILET_COUNT, int PARKING_COUNT, String REALESTATE_PHOTOS) {
+			double REALESTATE_AREA, String FLOORS, int ROOMS_COUNT, int TOILET_COUNT, int PARKING_COUNT, String REALESTATE_PHOTOS) {
 		this.REALESTATE_ID = REALESTATE_ID;
 		this.REALESTATE_TYPE = REALESTATE_TYPE;
 		this.REALESTATE_CONDITION = REALESTATE_CONDITION;
@@ -126,10 +126,10 @@ public class Realestate {
 	public void setREALESTATE_AREA(double rEALESTATE_AREA) {
 		REALESTATE_AREA = rEALESTATE_AREA;
 	}
-	public int getFLOORS() {
+	public String getFLOORS() {
 		return FLOORS;
 	}
-	public void setFLOORS(int fLOORS) {
+	public void setFLOORS(String fLOORS) {
 		FLOORS = fLOORS;
 	}
 	public int getROOMS_COUNT() {

@@ -133,7 +133,7 @@
 					       <!-- 면적 -->
 					       <span style="margin:4px"><%= r.getREALESTATE_AREA() %> ㎡ / </span>
 					       <!-- 층수 -->
-					       <span style="margin:4px"><%= r.getFLOORS() %> 층 </span><br><br>
+					       <span style="margin:4px"><%= r.getFLOORS() %></span><br><br>
 					       <!-- 방개수 -->
 					       <span style="margin:4px">방 <%= r.getROOMS_COUNT() %>개 /</span>
 					       <!-- 화장실 -->

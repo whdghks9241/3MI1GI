@@ -60,7 +60,7 @@ public class sql {
     	return sql;
     	
     }
-    // 전체조회
+    // 전체매물 조회
     public String realestateSearch() {
     	
     	sql = "SELECT * FROM REALESTATEINFO WHERE INTERMEDIARY_ID = ?";
@@ -76,12 +76,32 @@ public class sql {
     	return sql;
     }
     
+    // 특정 매물 정보 조회
+    public String realestateTargetSearch() {
+    	
+    	sql = "SELECT * FROM REALESTATEINFO WHERE INTERMEDIARY_ID = ? AND REALESTATE_ID = ?";
+    	
+    	return sql;
+    }
     
     // 매물수정
     public String realestateEdit() {
     	
     	sql = "UPDATE REALESTATEINFO SET REALESTATE_NAME = ? , REALESTATE_ADDRESS = ?, REALESTATE_TYPE = ?, REALESTATE_CONDITION = ?, REALESTATE_AREA = ?, FLOORS = ?, ROOMS_COUNT = ?, TOILET_COUNT = ?, REALESTATE_SALEPRICE = ?, REALESTATE_MONTHLY = ?, "
-    			+ "REALESTATE_MAINTENANCE_COST = ? , AVAILABLE_MOVE_IN_DATE = ?, PARKING_COUNT = ?, REALESTATE_OPTIION = ?, OTHER_COMMENT = ? WHERE REALESTATE_ID = ? AND INTERMEDIARY_ID = ?";
+    			+ "REALESTATE_MAINTENANCE_COST = ? , AVAILABLE_MOVE_IN_DATE = ?, PARKING_COUNT = ?, REALESTATE_OPTIION = ?, OTHER_COMMENT = ?, REALESTATE_PHOTOS = ? WHERE REALESTATE_ID = ? AND INTERMEDIARY_ID = ?";
+    	
+      	return sql;
+    }
+
+    public String inermediaryDelete() {
+    	sql = " DELETE FROM intermediary I WHERE I.INTERMEDIARY_USER_ID = (SELECT USER_ID FROM USERINFO U WHERE U.USER_ID = ?  AND U.ID = ?  AND U.PASSWORD = ?)";
+    		
+      	return sql;
+    }
+    
+    // 매물삭제
+    public String realestateDelete() {
+    	sql = "DELETE ";
     	
       	return sql;
     }
