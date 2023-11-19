@@ -3,7 +3,7 @@ package servlet;
 public class sql {
     private String sql;
     
-    // �쉶�썝媛��엯
+    // 회원가입
     public String register() {
     	
         sql = "INSERT INTO USERINFO (ID, PASSWORD, PHONE_NUMBER, EMAIL, ADDRESS) VALUES (?, ?, ?, ?, ?)";
@@ -19,7 +19,7 @@ public class sql {
  
     }
     
-    // 濡쒓렇�씤
+    // 로그
     public String login() {
     	
     	sql = "SELECT * FROM USERINFO WHERE ID =? AND PASSWORD = ?";

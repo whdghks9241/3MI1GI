@@ -16,11 +16,10 @@ import javax.servlet.http.HttpSession;
 public class DAO {
 	
 	private static final String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
-//	private static final String jdbcUsername = "sm";
-//	private static final String jdbcPassword = "sm1234";
-	private static final String jdbcUsername = "SM";
-	private static final String jdbcPassword = "SM1234";
-
+	private static final String jdbcUsername = "sm";
+	private static final String jdbcPassword = "sm1234";
+//	private static final String jdbcUsername = "SM";
+//	private static final String jdbcPassword = "SM1234";
 	
 	PreparedStatement ps;
 	ResultSet result;
@@ -41,8 +40,6 @@ public class DAO {
 	}
 
 	public Intermediary getIntermediaryInfo(int USER_ID) {
-
-
 		try {
 			connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
 			
@@ -104,7 +101,6 @@ public class DAO {
 				String OTHER_COMMENT = result.getString("OTHER_COMMENT");
 				Date REALESTATE_DATE = result.getDate("REALESTATE_DATE");
 				
-				
 				Blob REALESTATE_PHOTOS_blob =  result.getBlob("REALESTATE_PHOTOS");
 				byte[] imageData = REALESTATE_PHOTOS_blob.getBytes(1, (int) REALESTATE_PHOTOS_blob.length());
 
@@ -137,30 +133,30 @@ public class DAO {
 			result = ps.executeQuery();
 			
 			while(result.next()) {
-				// ¸Å¹°¹øÈ£
+				// ï¿½Å¹ï¿½ï¿½ï¿½È£
 				int REALESTATE_ID = result.getInt("REALESTATE_ID");
-				// °è¾àÁ¶°Ç
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				String REALESTATE_CONDITION = result.getString("REALESTATE_CONDITION");
-				// °è¾à±Ý¾×
+				// ï¿½ï¿½ï¿½Ý¾ï¿½
 				int REALESTATE_SALEPRICE = result.getInt("REALESTATE_SALEPRICE");
-				// ¿ù¼¼
+				// ï¿½ï¿½ï¿½ï¿½
 				int REALESTATE_MONTHLY = result.getInt("REALESTATE_MONTHLY");
-				// °ü¸®ºñ
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				int REALESTATE_MAINTENANCE_COST = result.getInt("REALESTATE_MAINTENANCE_COST");
-				// ¸Å¹°À¯Çü
+				// ï¿½Å¹ï¿½ï¿½ï¿½ï¿½ï¿½
 				String REALESTATE_TYPE = result.getString("REALESTATE_TYPE");
-				// ¸éÀû
+				// ï¿½ï¿½ï¿½ï¿½
 				double REALESTATE_AREA = result.getDouble("REALESTATE_AREA");
-				//Ãþ¼ö
+				//ï¿½ï¿½ï¿½ï¿½
 				String FLOORS = result.getString("FLOORS");
-				// ¹æ °³¼ö
+				// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				int ROOMS_COUNT = result.getInt("ROOMS_COUNT");
-				// È­Àå½Ç
+				// È­ï¿½ï¿½ï¿½
 				int TOILET_COUNT = result.getInt("TOILET_COUNT");
-				// ÁÖÂ÷°¡´É
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				int PARKING_COUNT = result.getInt("PARKING_COUNT");
 
-				// »çÁø
+				// ï¿½ï¿½ï¿½ï¿½
 				Blob REALESTATE_PHOTOS_blob =  result.getBlob("REALESTATE_PHOTOS");
 				byte[] imageData = REALESTATE_PHOTOS_blob.getBytes(1, (int) REALESTATE_PHOTOS_blob.length());
 
@@ -195,29 +191,29 @@ public class DAO {
 			result = ps.executeQuery();
 			
 			while(result.next()) {
-				// ¸Å¹°¹øÈ£
+				// ï¿½Å¹ï¿½ï¿½ï¿½È£
 				int REALESTATE_ID = result.getInt("REALESTATE_ID");
-				// °è¾àÁ¶°Ç
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				String REALESTATE_CONDITION = result.getString("REALESTATE_CONDITION");
-				// °è¾à±Ý¾×
+				// ï¿½ï¿½ï¿½Ý¾ï¿½
 				int REALESTATE_SALEPRICE = result.getInt("REALESTATE_SALEPRICE");
-				// ¿ù¼¼
+				// ï¿½ï¿½ï¿½ï¿½
 				int REALESTATE_MONTHLY = result.getInt("REALESTATE_MONTHLY");
-				// °ü¸®ºñ
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				int REALESTATE_MAINTENANCE_COST = result.getInt("REALESTATE_MAINTENANCE_COST");
-				// ¸éÀû
+				// ï¿½ï¿½ï¿½ï¿½
 				double REALESTATE_AREA = result.getDouble("REALESTATE_AREA");
-				//Ãþ¼ö
+				//ï¿½ï¿½ï¿½ï¿½
 				String FLOORS = result.getString("FLOORS");
-				// ¹æ °³¼ö
+				// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				int ROOMS_COUNT = result.getInt("ROOMS_COUNT");
-				// È­Àå½Ç
+				// È­ï¿½ï¿½ï¿½
 				int TOILET_COUNT = result.getInt("TOILET_COUNT");
-				// ÁÖÂ÷°¡´É
+				// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				int PARKING_COUNT = result.getInt("PARKING_COUNT");
 
 				
-				// »çÁø
+				// ï¿½ï¿½ï¿½ï¿½
 				Blob REALESTATE_PHOTOS_blob =  result.getBlob("REALESTATE_PHOTOS");
 				byte[] imageData = REALESTATE_PHOTOS_blob.getBytes(1, (int) REALESTATE_PHOTOS_blob.length());
 

@@ -104,50 +104,56 @@
                     </div>
                 </div>
                 
-              	<%
-                	for (Realestate r : RealeList) {
-                %>
+                <%
                 
-                <form method="post" action="realestateDetail.jsp">
-	                <div class="realestate_area" style="border: 1px solid black; width:95%; height:170px; margin:20px; cursor:pointer;" onclick="location.href='realestateDetail.jsp?REALESTATE_ID=<%=r.getREALESTATE_ID()%>'">
-	                    <div style="float: left">
-					        <img src="<%= r.getREALESTATE_PHOTOS() %>" alt="Image" style="width:140px; height:140px; margin:15px; background-color:#eeeeee" />
-					    </div>
-					    <div style="margin:15px;">
-					       <!-- 계약조건 -->
-					       <span style="margin:4px"><%= r.getREALESTATE_CONDITION() %> / </span>
-					       <!-- 매매가/ 전세가 / 보증금 -->
-					       <% if (r.getREALESTATE_CONDITION().equals("매매")) {%>
-					       		<span style="margin:4px">매매가 <%= r.getREALESTATE_SALEPRICE() %>원 / </span>
-					       		<span style="margin:4px">관리비 <%= r.getREALESTATE_MAINTENANCE_COST() %>원</span><br><br>
-					       <% } else if (r.getREALESTATE_CONDITION().equals("전세")) { %>
-					       		<span style="margin:4px">전세가 <%= r.getREALESTATE_SALEPRICE() %>원 / </span>
-					       		<span style="margin:4px">관리비 <%= r.getREALESTATE_MAINTENANCE_COST() %>원</span><br><br>
-					       <% } else if (r.getREALESTATE_CONDITION().equals("월세")) { %>	
-					       		<span style="margin:4px">보증금 <%= r.getREALESTATE_SALEPRICE() %>원 / </span>
-					       		<span style="margin:4px">월세 <%= r.getREALESTATE_MONTHLY() %>원 / </span>
-					       		<span style="margin:4px">관리비 <%= r.getREALESTATE_MAINTENANCE_COST() %>원</span><br><br>
-					       <% } %>
-					       
-					       <!-- 건물종류 -->
-					       <span style="margin:4px"><%= r.getREALESTATE_TYPE() %> / </span>
-					       <!-- 면적 -->
-					       <span style="margin:4px"><%= r.getREALESTATE_AREA() %> ㎡ / </span>
-					       <!-- 층수 -->
-					       <span style="margin:4px"><%= r.getFLOORS() %></span><br><br>
-					       <!-- 방개수 -->
-					       <span style="margin:4px">방 <%= r.getROOMS_COUNT() %>개 /</span>
-					       <!-- 화장실 -->
-					       <span style="margin:4px">화장실 <%= r.getTOILET_COUNT() %>개 /</span>
-					       <!-- 주차가능수 -->
-					       <span style="margin:4px">주차가능 <%= r.getPARKING_COUNT() %>대</span>
-					   	   <input TYPE="hidden" id="request" name="request" value="request-realestateDetail">
-					    </div>
-	                </div>
-                </form>
-				<%
-				}
-				%>
+	                if (RealeList != null) {
+	                	for (Realestate r : RealeList) {
+	               
+	                	%>
+		                
+		                <form method="post" action="realestateDetail.jsp">
+			                <div class="realestate_area" style="border: 1px solid black; width:95%; height:170px; margin:20px; cursor:pointer;" onclick="location.href='realestateDetail.jsp?REALESTATE_ID=<%=r.getREALESTATE_ID()%>'">
+			                    <div style="float: left">
+							        <img src="<%= r.getREALESTATE_PHOTOS() %>" alt="Image" style="width:140px; height:140px; margin:15px; background-color:#eeeeee" />
+							    </div>
+							    <div style="margin:15px;">
+							       <!-- 계약조건 -->
+							       <span style="margin:4px"><%= r.getREALESTATE_CONDITION() %> / </span>
+							       <!-- 매매가/ 전세가 / 보증금 -->
+							       <% if (r.getREALESTATE_CONDITION().equals("매매")) {%>
+							       		<span style="margin:4px">매매가 <%= r.getREALESTATE_SALEPRICE() %>원 / </span>
+							       		<span style="margin:4px">관리비 <%= r.getREALESTATE_MAINTENANCE_COST() %>원</span><br><br>
+							       <% } else if (r.getREALESTATE_CONDITION().equals("전세")) { %>
+							       		<span style="margin:4px">전세가 <%= r.getREALESTATE_SALEPRICE() %>원 / </span>
+							       		<span style="margin:4px">관리비 <%= r.getREALESTATE_MAINTENANCE_COST() %>원</span><br><br>
+							       <% } else if (r.getREALESTATE_CONDITION().equals("월세")) { %>	
+							       		<span style="margin:4px">보증금 <%= r.getREALESTATE_SALEPRICE() %>원 / </span>
+							       		<span style="margin:4px">월세 <%= r.getREALESTATE_MONTHLY() %>원 / </span>
+							       		<span style="margin:4px">관리비 <%= r.getREALESTATE_MAINTENANCE_COST() %>원</span><br><br>
+							       <% } %>
+							       
+							       <!-- 건물종류 -->
+							       <span style="margin:4px"><%= r.getREALESTATE_TYPE() %> / </span>
+							       <!-- 면적 -->
+							       <span style="margin:4px"><%= r.getREALESTATE_AREA() %> ㎡ / </span>
+							       <!-- 층수 -->
+							       <span style="margin:4px"><%= r.getFLOORS() %></span><br><br>
+							       <!-- 방개수 -->
+							       <span style="margin:4px">방 <%= r.getROOMS_COUNT() %>개 /</span>
+							       <!-- 화장실 -->
+							       <span style="margin:4px">화장실 <%= r.getTOILET_COUNT() %>개 /</span>
+							       <!-- 주차가능수 -->
+							       <span style="margin:4px">주차가능 <%= r.getPARKING_COUNT() %>대</span>
+							   	   <input TYPE="hidden" id="request" name="request" value="request-realestateDetail">
+							    </div>
+			                </div>
+		                </form>
+						<%
+						}
+				
+	                } else if (RealeList == null)  { %>
+	                 	<p>매물없음</p>
+	            <%  } %>
 
             </article>
         </nav>

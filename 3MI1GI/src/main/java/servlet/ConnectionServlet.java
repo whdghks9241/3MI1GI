@@ -45,10 +45,10 @@ public class ConnectionServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
-//		String jdbcUsername = "sm";
-//		String jdbcPassword = "sm1234";
-		String jdbcUsername = "SM";
-		String jdbcPassword = "SM1234";
+		String jdbcUsername = "sm";
+		String jdbcPassword = "sm1234";
+//		String jdbcUsername = "SM";
+//		String jdbcPassword = "SM1234";
 		
 		String sqlQuery = null;
 		
@@ -118,7 +118,7 @@ public class ConnectionServlet extends HttpServlet {
 					}
 				
 
-					response.sendRedirect("myPage.jsp");
+					response.sendRedirect("Main.jsp");
 					
 				} else {
 					request.getRequestDispatcher("login.jsp").forward(request, response);
@@ -161,7 +161,7 @@ public class ConnectionServlet extends HttpServlet {
 				
 	            request.setAttribute("USER_ID", INTERMEDIARY_USER_ID);
 	            ServletContext context = this.getServletContext();
-	            RequestDispatcher dispatcher = context.getRequestDispatcher("/myPageIntermediarySearchAndEdit.jsp"); //占싼깍옙 占쏙옙占쏙옙占쏙옙 占쌍쇽옙
+	            RequestDispatcher dispatcher = context.getRequestDispatcher("/myPageIntermediarySearchAndEdit.jsp"); 
 	            dispatcher.forward(request, response);
 	   
 	        // 중개인 정보 수정
@@ -341,28 +341,26 @@ public class ConnectionServlet extends HttpServlet {
 	            dispatcher.forward(request, response);
 			} else if (request_result.equals("request-realestate_delete")) {
 				
+				
 			} else if (request_result.equals("request-inermediary_delete")) {
-
 				System.out.println("result" );
 				String ID = request.getParameter("ID");
 				
 				String PW = request.getParameter("PW");
 				int USER_ID = (int) session.getAttribute("USER_ID");
 				sqlQuery = sql.inermediaryDelete();
-				System.out.println("result1" );
 				
 				ps = connection.prepareStatement(sqlQuery);
-				System.out.println("result2" );
 				
 				ps.setInt(1, USER_ID);
 				ps.setString(2, ID);
 				ps.setString(3, PW);
-				System.out.println("result3" );
 				
 				ps.executeUpdate();
-				System.out.println("result4" );
 				session.removeAttribute("INTERMEDIARY_ID");
-				System.out.println("result5" + ps.executeUpdate());
+				
+
+				response.sendRedirect("myPage.jsp");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
