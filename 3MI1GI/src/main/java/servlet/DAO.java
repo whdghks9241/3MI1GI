@@ -16,10 +16,10 @@ import javax.servlet.http.HttpSession;
 public class DAO {
 	
 	private static final String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
-	private static final String jdbcUsername = "sm";
-	private static final String jdbcPassword = "sm1234";
-//	private static final String jdbcUsername = "SM";
-//	private static final String jdbcPassword = "SM1234";
+//	private static final String jdbcUsername = "sm";
+//	private static final String jdbcPassword = "sm1234";
+	private static final String jdbcUsername = "SM";
+	private static final String jdbcPassword = "SM1234";
 	
 	PreparedStatement ps;
 	ResultSet result;
@@ -133,30 +133,30 @@ public class DAO {
 			result = ps.executeQuery();
 			
 			while(result.next()) {
-				// �Ź���ȣ
+				// 占신뱄옙占쏙옙호
 				int REALESTATE_ID = result.getInt("REALESTATE_ID");
-				// �������
+				// 占쏙옙占쏙옙占쏙옙占�
 				String REALESTATE_CONDITION = result.getString("REALESTATE_CONDITION");
-				// ���ݾ�
+				// 占쏙옙占쌥억옙
 				int REALESTATE_SALEPRICE = result.getInt("REALESTATE_SALEPRICE");
-				// ����
+				// 占쏙옙占쏙옙
 				int REALESTATE_MONTHLY = result.getInt("REALESTATE_MONTHLY");
-				// ������
+				// 占쏙옙占쏙옙占쏙옙
 				int REALESTATE_MAINTENANCE_COST = result.getInt("REALESTATE_MAINTENANCE_COST");
-				// �Ź�����
+				// 占신뱄옙占쏙옙占쏙옙
 				String REALESTATE_TYPE = result.getString("REALESTATE_TYPE");
-				// ����
+				// 占쏙옙占쏙옙
 				double REALESTATE_AREA = result.getDouble("REALESTATE_AREA");
-				//����
+				//占쏙옙占쏙옙
 				String FLOORS = result.getString("FLOORS");
-				// �� ����
+				// 占쏙옙 占쏙옙占쏙옙
 				int ROOMS_COUNT = result.getInt("ROOMS_COUNT");
-				// ȭ���
+				// 화占쏙옙占�
 				int TOILET_COUNT = result.getInt("TOILET_COUNT");
-				// ��������
+				// 占쏙옙占쏙옙占쏙옙占쏙옙
 				int PARKING_COUNT = result.getInt("PARKING_COUNT");
 
-				// ����
+				// 占쏙옙占쏙옙
 				Blob REALESTATE_PHOTOS_blob =  result.getBlob("REALESTATE_PHOTOS");
 				byte[] imageData = REALESTATE_PHOTOS_blob.getBytes(1, (int) REALESTATE_PHOTOS_blob.length());
 
@@ -191,29 +191,29 @@ public class DAO {
 			result = ps.executeQuery();
 			
 			while(result.next()) {
-				// �Ź���ȣ
+				// 占신뱄옙占쏙옙호
 				int REALESTATE_ID = result.getInt("REALESTATE_ID");
-				// �������
+				// 占쏙옙占쏙옙占쏙옙占�
 				String REALESTATE_CONDITION = result.getString("REALESTATE_CONDITION");
-				// ���ݾ�
+				// 占쏙옙占쌥억옙
 				int REALESTATE_SALEPRICE = result.getInt("REALESTATE_SALEPRICE");
-				// ����
+				// 占쏙옙占쏙옙
 				int REALESTATE_MONTHLY = result.getInt("REALESTATE_MONTHLY");
-				// ������
+				// 占쏙옙占쏙옙占쏙옙
 				int REALESTATE_MAINTENANCE_COST = result.getInt("REALESTATE_MAINTENANCE_COST");
-				// ����
+				// 占쏙옙占쏙옙
 				double REALESTATE_AREA = result.getDouble("REALESTATE_AREA");
-				//����
+				//占쏙옙占쏙옙
 				String FLOORS = result.getString("FLOORS");
-				// �� ����
+				// 占쏙옙 占쏙옙占쏙옙
 				int ROOMS_COUNT = result.getInt("ROOMS_COUNT");
-				// ȭ���
+				// 화占쏙옙占�
 				int TOILET_COUNT = result.getInt("TOILET_COUNT");
-				// ��������
+				// 占쏙옙占쏙옙占쏙옙占쏙옙
 				int PARKING_COUNT = result.getInt("PARKING_COUNT");
 
 				
-				// ����
+				// 占쏙옙占쏙옙
 				Blob REALESTATE_PHOTOS_blob =  result.getBlob("REALESTATE_PHOTOS");
 				byte[] imageData = REALESTATE_PHOTOS_blob.getBytes(1, (int) REALESTATE_PHOTOS_blob.length());
 

@@ -156,40 +156,24 @@
 	      			<h1 style="padding:20px; font-size:25px; font-weight: bold;  text-align: center;">옵션</h1>
 	      			<table style="margin-left:100px" >
 						<tr>
-							<td><input id="OPTION_1" type="checkbox" class="checkbox">냉장고</td>
-								<td><input TYPE="hidden" id="OPTION_1_val" name="OPTION_1_val"></td>
-							<td><input name="OPTION_2" type="checkbox" class="checkbox">세탁기</td>
-								<td><input TYPE="hidden" id="OPTION_2_val" name="OPTION_2_val"></td>
-							<td><input name="OPTION_3" type="checkbox" class="checkbox">에어컨</td>
-								<td><input TYPE="hidden" id="OPTION_3_val" name="OPTION_3_val"></td>
-							<td><input name="OPTION_4" type="checkbox" class="checkbox">샤워부스</td>
-								<td><input TYPE="hidden" id="OPTION_4_val" name="OPTION_4_val"></td>
-							<td><input name="OPTION_5" type="checkbox" class="checkbox">전자레인지</td>
-								<td><input TYPE="hidden" id="OPTION_5_val" name="OPTION_5_val"></td>
-							<td><input name="OPTION_6" type="checkbox" class="checkbox">인덕션</td>
-								<td><input TYPE="hidden" id="OPTION_6_val" name="OPTION_6_val"></td>
-							<td><input name="OPTION_7" type="checkbox" class="checkbox">싱크대</td>
-								<td><input TYPE="hidden" id="OPTION_7_val" name="OPTION_7_val"></td>
-							<td><input name="OPTION_8" type="checkbox" class="checkbox">침대</td>
-								<td><input TYPE="hidden" id="OPTION_8_val" name="OPTION_8_val"></td>
+							<td><input name="OPTION" type="checkbox" class="checkbox" value="냉장고">냉장고</td>
+							<td><input name="OPTION" type="checkbox" class="checkbox" value="세탁기">세탁기</td>
+							<td><input name="OPTION" type="checkbox" class="checkbox" value="에어컨">에어컨</td>
+							<td><input name="OPTION" type="checkbox" class="checkbox" value="샤워부스">샤워부스</td>
+							<td><input name="OPTION" type="checkbox" class="checkbox" value="전자레인지">전자레인지</td>
+							<td><input name="OPTION" type="checkbox" class="checkbox" value="인덕션">인덕션</td>
+							<td><input name="OPTION" type="checkbox" class="checkbox" value="싱크대">싱크대</td>
+							<td><input name="OPTION" type="checkbox" class="checkbox" value="침대">침대</td>
 						</tr>
 						<tr>
-							<td><input name="OPTION_9" type="checkbox" class="checkbox">책상</td>
-								<td><input TYPE="hidden" id="OPTION_9_val" name="OPTION_9_val"></td>
-							<td><input name="OPTION_10" type="checkbox" class="checkbox">신발장</td>
-								<td><input TYPE="hidden" id="OPTION_10_val" name="OPTION_10_val"></td>
-							<td><input name="OPTION_11" type="checkbox" class="checkbox">옷장</td>
-								<td><input TYPE="hidden" id="OPTION_11_val" name="OPTION_11_val"></td>
-							<td><input name="OPTION_12" type="checkbox" class="checkbox">화재경보기</td>
-								<td><input TYPE="hidden" id="OPTION_12_val" name="OPTION_12_val"></td>
-							<td><input name="OPTION_13" type="checkbox" class="checkbox">가스오븐</td>
-								<td><input TYPE="hidden" id="OPTION_13_val" name="OPTION_13OPTION_13_val"></td>
-							<td><input name="OPTION_14" type="checkbox" class="checkbox">비데</td>
-								<td><input TYPE="hidden" id="OPTION_14_val" name="OPTION_14_val"></td>
-							<td><input name="OPTION_15" type="checkbox" class="checkbox">베란다</td>
-								<td><input TYPE="hidden" id="OPTION_15_val" name="OPTION_15_val"></td>
-							<td><input name="OPTION_16" type="checkbox" class="checkbox">무인택배함</td>
-								<td><input TYPE="hidden" id="OPTION_16_val" name="OPTION_16_val"></td>
+							<td><input name="OPTION" type="checkbox" class="checkbox" value="책상">책상</td>
+							<td><input name="OPTION" type="checkbox" class="checkbox" value="신발장">신발장</td>
+							<td><input name="OPTION" type="checkbox" class="checkbox" value="옷장">옷장</td>
+							<td><input name="OPTION" type="checkbox" class="checkbox" value="화재경보기">화재경보기</td>
+							<td><input name="OPTION" type="checkbox" class="checkbox" value="가스오븐">가스오븐</td>
+							<td><input name="OPTION" type="checkbox" class="checkbox" value="비데">비데</td>
+							<td><input name="OPTION" type="checkbox" class="checkbox" value="베란다">베란다</td>
+							<td><input name="OPTION" type="checkbox" class="checkbox" value="무인택배함">무인택배함</td>
 						</tr>
 	      			</table>
 		      	</div> 

@@ -154,10 +154,8 @@
 	                } else if (RealeList == null)  { %>
 	                 	<p>매물없음</p>
 	            <%  } %>
-
             </article>
         </nav>
     </section>
-
 </body>
 </html>

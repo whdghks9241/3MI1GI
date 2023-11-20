@@ -48,11 +48,11 @@
 
             <tr>
                 <td>면적</td>
-                <td><input type="checkbox" name="area" value="10DWON"> 10평 이하</td>
                 <td><input type="checkbox" name="area" value="10"> 10평</td>
                 <td><input type="checkbox" name="area" value="20"> 20평</td>
                 <td><input type="checkbox" name="area" value="30"> 30평</td>
-                <td><input type="checkbox" name="area" value="40UP"> 40평 이상</td>
+                <td><input type="checkbox" name="area" value="40"> 40평</td>
+                <td><input type="checkbox" name="area" value="50"> 50평</td>
             </tr>
             <tr>
                 <td>방 개수</td>
@@ -60,13 +60,13 @@
                 <td><input type="checkbox" name="total_room" value="2"> 2개</td>
                 <td><input type="checkbox" name="total_room" value="3"> 3개</td>
                 <td><input type="checkbox" name="total_room" value="4"> 4개</td>
-                <td><input type="checkbox" name="total_room" value="5이상"> 5개 이상</td>
+                <td><input type="checkbox" name="total_room" value="5"> 5개</td>
             </tr>
             <tr>
                 <td>화장실 개수</td>
                 <td><input type="checkbox" name="toilet_count" value="1"> 1개</td>
                 <td><input type="checkbox" name="toilet_count" value="2"> 2개</td>
-                <td><input type="checkbox" name="toilet_count" value="3"> 3개 이상</td>
+                <td><input type="checkbox" name="toilet_count" value="3"> 3개</td>
                 </tr>
         </table>
         <input type="submit" class=searchButton  value="검색하기" />

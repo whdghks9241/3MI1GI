@@ -45,10 +45,10 @@ public class ConnectionServlet extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
-		String jdbcUsername = "sm";
-		String jdbcPassword = "sm1234";
-//		String jdbcUsername = "SM";
-//		String jdbcPassword = "SM1234";
+//		String jdbcUsername = "sm";
+//		String jdbcPassword = "sm1234";
+		String jdbcUsername = "SM";
+		String jdbcPassword = "SM1234";
 		
 		String sqlQuery = null;
 		
@@ -219,11 +219,32 @@ public class ConnectionServlet extends HttpServlet {
 				Date AVAILABLE_MOVE_IN_DATE = Date.valueOf(request.getParameter("AVAILABLE_MOVE_IN_DATE"));
 				// 주차가능수
 				int PARKING_COUNT = Integer.parseInt(request.getParameter("PARKING_COUNT"));
-				
-		
-				
-				// 옵션
-				String REALESTATE_OPTIION = null;
+
+				StringBuilder REALESTATE_OPTIION = new StringBuilder();
+						
+		        String[] OPTIONLIST = request.getParameterValues("OPTION");
+		        if (OPTIONLIST != null && OPTIONLIST.length > 0) {
+		        	 for (String type : OPTIONLIST) {
+		        		 REALESTATE_OPTIION.append("").append(type).append(",");
+			         }
+		        	 REALESTATE_OPTIION.deleteCharAt(REALESTATE_OPTIION.length() - 1);
+		        	 REALESTATE_OPTIION.append("");
+		        }
+		        
+            	int PLAIN_NUMBER = (int) Math.floor(REALESTATE_AREA/3.3);
+            	if (PLAIN_NUMBER > 10 && PLAIN_NUMBER < 20) {
+            		PLAIN_NUMBER = 10;
+            	} else if (PLAIN_NUMBER >= 20 && PLAIN_NUMBER < 30) {
+                	PLAIN_NUMBER = 20;	
+            	} else if (PLAIN_NUMBER >= 30 && PLAIN_NUMBER < 40) {
+                	PLAIN_NUMBER = 30;	
+            	} else if (PLAIN_NUMBER >= 40 && PLAIN_NUMBER < 50) {
+                	PLAIN_NUMBER = 40;	
+            	} else if (PLAIN_NUMBER >= 50 && PLAIN_NUMBER < 60) {
+                	PLAIN_NUMBER = 50;	
+            	}
+            	
+            	String S_OPTIION = REALESTATE_OPTIION.toString();
 				
 				// 기타내용
 				String OTHER_COMMENT = request.getParameter("OTHER_COMMENT");
@@ -254,11 +275,11 @@ public class ConnectionServlet extends HttpServlet {
 				ps.setInt(12, REALESTATE_MAINTENANCE_COST);
 				ps.setDate(13, AVAILABLE_MOVE_IN_DATE);
 				ps.setInt(14, PARKING_COUNT);
-				ps.setString(15, REALESTATE_OPTIION);
+				ps.setString(15, S_OPTIION);
 				ps.setString(16, OTHER_COMMENT);
 				ps.setDate(17, REALESTATE_DATE);
 				ps.setBinaryStream(18, imagePart.getInputStream(), (int) imagePart.getSize());
-				
+				ps.setInt(19, PLAIN_NUMBER);
 				ps.executeUpdate();
 
 				//매물등록이 마무리되면 내가 등록된 매물 페이지로 이동

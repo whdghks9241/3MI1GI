@@ -57,7 +57,7 @@ public class searchRealestateServlet extends HttpServlet {
 	        }
 	        
 	        if (areas != null && areas.length > 0) {
-	            sqlBuilder.append(" AND REALESTATE_AREA IN (");
+	            sqlBuilder.append(" AND PLAIN_NUMBER IN (");
 	            for (String type : areas) {
 	            	sqlBuilder.append("'").append(type).append("',");
 	                
